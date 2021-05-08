@@ -63,8 +63,8 @@ public class Shooter : MonoBehaviour, IRuntime
         
         if (Vector2.Dot(target, transform.forward) < 0.5) // currently bugged dot prudoct is always 0
         {
-            transform.rotation = Quaternion.Lerp(transform.rotation, LookAtMouse(Input.mousePosition),
-                Time.deltaTime * turnSpeed);
+            // transform.rotation = Quaternion.Lerp(transform.rotation, LookAtMouse(Input.mousePosition),
+            //     Time.deltaTime * turnSpeed);
         }
         // debug section
     }

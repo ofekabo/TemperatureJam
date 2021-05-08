@@ -8,8 +8,8 @@ public class Projectile : MonoBehaviour
 {
     
     private Rigidbody2D _rb;
-    public float speed;
-    public float lifeTime;
+    [HideInInspector] public float speed;
+    [HideInInspector] public float lifeTime;
 
     private void Start()
     {
