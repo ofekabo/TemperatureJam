@@ -5,10 +5,12 @@ using UnityEngine;
 public class AnimatorController : MonoBehaviour , IRuntime
 {
     Animator _animator;
+    private Camera _camera;
     
     void Start()
     {
         _animator = GetComponent<Animator>();
+        _camera = Camera.main;
     }
 
     
@@ -22,8 +24,7 @@ public class AnimatorController : MonoBehaviour , IRuntime
     {
         
         float angleBetween = AngleBetweenVector2();
-     
-        _animator.SetFloat("Angle",angleBetween);
+        
         if (angleBetween >= 45 && angleBetween < 135)
         {
             //top
@@ -45,11 +46,10 @@ public class AnimatorController : MonoBehaviour , IRuntime
             _animator.SetTrigger("right");
         }
         
-        Debug.Log(angleBetween);
     }
     private float  AngleBetweenVector2()
     {
-        Vector2 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
+        Vector2 dir = Input.mousePosition - _camera.WorldToScreenPoint(transform.position);
         float angle = Mathf.Atan2(dir.y,dir.x) * Mathf.Rad2Deg;
         return angle;
     }

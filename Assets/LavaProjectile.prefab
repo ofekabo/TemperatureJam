@@ -131,6 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   lifeTime: 0
+  bulletType: 1
 --- !u!50 &2708553159421444756
 Rigidbody2D:
   serializedVersion: 4
