@@ -3,31 +3,51 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movement : MonoBehaviour, IRuntime
+public class Movement : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 5f;
 
     private Rigidbody2D _rb;
-    private void Start()
+    private PlayerController _player;
+
+    private void Awake()
     {
+        try
+        {
+            _player = GetComponent<PlayerController>();
+        }
+        catch (NullReferenceException e)
+        {
+            throw;
+        }
+        
         _rb = GetComponent<Rigidbody2D>();
     }
 
-    public void UpdateRuntime()
+    private void Start()
     {
-        PlayerMovement();
+        
     }
+    
 
-    void PlayerMovement()
+    public void PlayerMovement(Animator animator)
     {
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
         
         Vector2 movement = new Vector2(h,v);
-        
-        // transform.Translate(movement * (Time.deltaTime * moveSpeed),Space.World);
-        
+        if (Mathf.Abs(movement.magnitude) > 0)
+        {
+            animator.SetBool("IsMoving",true);
+        }
+        else
+        {
+            animator.SetBool("IsMoving",false);
+        }
+
         _rb.MovePosition(_rb.position + movement * (moveSpeed * Time.fixedDeltaTime));
+        animator.SetFloat("Horizontal",h);
+        animator.SetFloat("Vertical",v);
     }
 
     void AiLocomotion()

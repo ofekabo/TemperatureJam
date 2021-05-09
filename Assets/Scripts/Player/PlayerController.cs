@@ -25,9 +25,9 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        _movement.UpdateRuntime();
+        _movement.PlayerMovement(_animator.animator);
         _shooter.UpdateRuntime();
-        _animator.UpdateRuntime();
+        _animator.CalculateAngleForAnim(Input.mousePosition);
 
         _shooter.AimWeapons(_holdingShift);
 

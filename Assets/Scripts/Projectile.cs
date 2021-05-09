@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -9,8 +10,6 @@ using UnityEngine.Serialization;
 
 public class Projectile : MonoBehaviour
 {
-
-
     private Rigidbody2D _rb;
     [HideInInspector] public float speed;
     [HideInInspector] public float lifeTime;

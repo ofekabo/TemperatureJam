@@ -29,15 +29,7 @@ public class BaseEnemy : MonoBehaviour
     {
        
     }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        Projectile projectile = other.GetComponent<Projectile>();
-        if (projectile)
-        {
-           
-        }
-    }
+    
 
     public void UpdateTemp()
     {
