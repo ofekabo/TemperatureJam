@@ -8,16 +8,17 @@ using TMPro;
 
 public class TempUIOverhead : MonoBehaviour
 {
-   TempControl _tempControl;
-   [SerializeField] TMP_Text tempText;
+    BaseEnemy _baseEnemy;
+    [SerializeField] TMP_Text tempText;
+   
     
     void Start()
     {
-        _tempControl = transform.root.GetComponent<TempControl>();
+        _baseEnemy = transform.root.GetComponent<BaseEnemy>();
     }
 
-    public void UpdateText(int deathTemp)
+    public void UpdateText()
     {
-        tempText.text = $"{_tempControl.Temperature}/{deathTemp}";
+        tempText.text = $"{_baseEnemy.tempControl.Temperature}/{_baseEnemy.DeathTemp}";
     }
 }

@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TempControl : MonoBehaviour
@@ -9,9 +6,9 @@ public class TempControl : MonoBehaviour
     [SerializeField] private int maxTemp = 50;
     [SerializeField] private int minTemp = 20;
 
-    [Header("read only")]
-    [SerializeField] private int _temperature;
-    public int Temperature => _temperature;
+    [Header("Read Only")]
+    [SerializeField] private int temperature;
+    public int Temperature => temperature;
 
     private TempUIOverhead _tempUI;
 
@@ -22,18 +19,18 @@ public class TempControl : MonoBehaviour
 
     private void Start()
     {
-        _temperature = initTemp;
+        temperature = initTemp;
     }
 
-    public void ChangeTemp(int amount,int deathTemp)
+    public void ChangeTempAI(int amount)
     {
-        _temperature += amount;
-        _temperature = Mathf.Clamp(_temperature, minTemp, maxTemp);
-        _tempUI.UpdateText(deathTemp);
+        temperature += amount;
+        temperature = Mathf.Clamp(temperature, minTemp, maxTemp);
+        _tempUI.UpdateText();
     }
     public void ChangeTemp(int amount)
     {
-        _temperature += amount;
-        _temperature = Mathf.Clamp(_temperature, minTemp, maxTemp);
+        temperature += amount;
+        temperature = Mathf.Clamp(temperature, minTemp, maxTemp);
     }
 }

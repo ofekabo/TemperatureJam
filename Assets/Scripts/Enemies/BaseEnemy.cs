@@ -7,16 +7,22 @@ using UnityEngine;
 public class BaseEnemy : MonoBehaviour
 {
     [SerializeField] int deathTemp;
-    private TempControl _tempControl;
+    [SerializeField] int tempDifference = 3;
+    [SerializeField] bool basicHealth = false;
+    [HideInInspector]public TempControl tempControl;
+    
+    public int DeathTemp => deathTemp;
+    public enum Type{Lava,Ice}
+    public Type enemyType;
 
     private void Awake()
     {
-        _tempControl = GetComponent<TempControl>();
+        tempControl = GetComponent<TempControl>();
     }
 
     void Start()
     {
-        _tempControl.ChangeTemp(0,deathTemp);
+        tempControl.ChangeTempAI(0);
     }
 
     private void Update()
@@ -29,16 +35,31 @@ public class BaseEnemy : MonoBehaviour
         Projectile projectile = other.GetComponent<Projectile>();
         if (projectile)
         {
-            if (projectile.bulletType == Projectile.Type.Ice)
-                _tempControl.ChangeTemp(-6,deathTemp);
-            
-            if (projectile.bulletType == Projectile.Type.Lava)
-                _tempControl.ChangeTemp(5,deathTemp);
-
-            if (Mathf.Abs(_tempControl.Temperature - deathTemp) <= 1)
-            {
-               Destroy(gameObject);
-            }
+           
         }
+    }
+
+    public void UpdateTemp()
+    {
+        if (!basicHealth)
+        {
+            if (Mathf.Abs(tempControl.Temperature - deathTemp) <= tempDifference)
+            {
+                Destroy(gameObject);
+            }
+            return;
+        }
+            
+        if (enemyType == Type.Lava && tempControl.Temperature < deathTemp)
+        {
+            Destroy(gameObject);
+        }
+
+        if (enemyType == Type.Ice && tempControl.Temperature > deathTemp)
+        {
+            Destroy(gameObject);
+        }
+        
+        
     }
 }

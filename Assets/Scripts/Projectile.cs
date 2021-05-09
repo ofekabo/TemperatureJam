@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -33,5 +34,26 @@ public class Projectile : MonoBehaviour
         
         if (lifeTime > 0) { return; }
         Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        BaseEnemy enemy = other.GetComponent<BaseEnemy>();
+        TempControl temp = other.GetComponent<TempControl>();
+        if (temp && enemy)
+        {
+            if (bulletType == Type.Ice)
+            {
+                temp.ChangeTempAI(-6);
+            }
+
+            if (bulletType == Type.Lava)
+            {
+                temp.ChangeTempAI(5);
+            }
+            
+            enemy.UpdateTemp();
+            Destroy(gameObject);
+        }
     }
 }
