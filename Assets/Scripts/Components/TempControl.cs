@@ -36,23 +36,4 @@ public class TempControl : MonoBehaviour
         _temperature += amount;
         _temperature = Mathf.Clamp(_temperature, minTemp, maxTemp);
     }
-
-    private void ShowTemp()
-    {
-        print(_temperature);
-    }
-
-    #region Enemies
-
-    public void HandleIceEnemy()
-    {
-        
-    }
-
-    public void HandleLavaEnemy()
-    {
-        
-    }
-    
-    #endregion
 }

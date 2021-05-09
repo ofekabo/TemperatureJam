@@ -57,17 +57,17 @@ public class Shooter : MonoBehaviour, IRuntime
 
     #region Player
 
-    public void PlayerAim(float turnSpeed)
-    {
-        Vector2 target = (Input.mousePosition - transform.position).normalized;
-        
-        if (Vector2.Dot(target, transform.forward) < 0.5) // currently bugged dot prudoct is always 0
-        {
-            // transform.rotation = Quaternion.Lerp(transform.rotation, LookAtMouse(Input.mousePosition),
-            //     Time.deltaTime * turnSpeed);
-        }
-        // debug section
-    }
+    // public void PlayerAim(float turnSpeed)
+    // {
+    //     Vector2 target = (Input.mousePosition - transform.position).normalized;
+    //     
+    //     if (Vector2.Dot(target, transform.forward) < 0.5) // currently bugged dot prudoct is always 0
+    //     {
+    //         transform.rotation = Quaternion.Lerp(transform.rotation, LookAtMouse(Input.mousePosition),
+    //             Time.deltaTime * turnSpeed);
+    //     }
+    //   
+    // }
 
     Quaternion LookAtMouse(Vector3 mousePos)
     {

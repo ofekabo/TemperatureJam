@@ -6,7 +6,6 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("Movement adjustments")] [SerializeField]
-    float turnSpeed = 5f;
 
     Movement _movement;
     Shooter _shooter;
@@ -29,9 +28,6 @@ public class PlayerController : MonoBehaviour
         _movement.UpdateRuntime();
         _shooter.UpdateRuntime();
         _animator.UpdateRuntime();
-
-        _shooter.PlayerAim(turnSpeed);
-
 
         _shooter.AimWeapons(_holdingShift);
 
