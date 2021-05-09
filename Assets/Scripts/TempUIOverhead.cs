@@ -10,11 +10,15 @@ public class TempUIOverhead : MonoBehaviour
 {
     BaseEnemy _baseEnemy;
     [SerializeField] TMP_Text tempText;
-   
-    
+
+    private void Awake()
+    {
+        _baseEnemy = GetComponentInParent<BaseEnemy>();
+    }
+
     void Start()
     {
-        _baseEnemy = transform.root.GetComponent<BaseEnemy>();
+        
     }
 
     public void UpdateText()

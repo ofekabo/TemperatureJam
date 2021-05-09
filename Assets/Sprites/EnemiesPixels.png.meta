@@ -8,6 +8,15 @@ TextureImporter:
   - first:
       213: -3386733541860296960
     second: EnemiesPixels_1
+  - first:
+      213: 5211371450094233595
+    second: EnemiesPixels_2
+  - first:
+      213: -8030907587848350368
+    second: EnemiesPixels_3
+  - first:
+      213: 4035792152541078638
+    second: EnemiesPixels_4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -101,7 +110,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 24
+        y: 48
         width: 24
         height: 24
       alignment: 0
@@ -122,7 +131,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 24
-        y: 24
+        y: 48
         width: 24
         height: 24
       alignment: 0
@@ -134,6 +143,69 @@ TextureImporter:
       bones: []
       spriteID: 007348099c7eff0d0800000000000000
       internalID: -3386733541860296960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnemiesPixels_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 24
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf7aa7b09b2825840800000000000000
+      internalID: 5211371450094233595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnemiesPixels_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0655f42391c7c8090800000000000000
+      internalID: -8030907587848350368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnemiesPixels_4
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 0
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6425878493020830800000000000000
+      internalID: 4035792152541078638
       vertices: []
       indices: 
       edges: []
