@@ -13,28 +13,46 @@ public class TempControl : MonoBehaviour
     [SerializeField] private int _temperature;
     public int Temperature => _temperature;
 
+    private TempUIOverhead _tempUI;
+
+    private void Awake()
+    {
+        _tempUI = GetComponentInChildren<TempUIOverhead>();
+    }
 
     private void Start()
     {
         _temperature = initTemp;
     }
 
+    public void ChangeTemp(int amount,int deathTemp)
+    {
+        _temperature += amount;
+        _temperature = Mathf.Clamp(_temperature, minTemp, maxTemp);
+        _tempUI.UpdateText(deathTemp);
+    }
     public void ChangeTemp(int amount)
     {
         _temperature += amount;
         _temperature = Mathf.Clamp(_temperature, minTemp, maxTemp);
-        ShowTemp();
-        if (_temperature > maxTemp)
-        {
-            
-        }
-        if (_temperature < minTemp)
-        {
-        }
     }
 
     private void ShowTemp()
     {
         print(_temperature);
     }
+
+    #region Enemies
+
+    public void HandleIceEnemy()
+    {
+        
+    }
+
+    public void HandleLavaEnemy()
+    {
+        
+    }
+    
+    #endregion
 }
