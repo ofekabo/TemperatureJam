@@ -5,26 +5,28 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    [SerializeField] float moveSpeed = 5f;
+    [SerializeField]protected float moveSpeed = 5f;
 
-    private Rigidbody2D _rb;
+    protected Rigidbody2D rb;
     private PlayerController _player;
+    private BaseEnemy _enemy;
 
-    private void Awake()
+    public void Awake()
     {
         try
         {
             _player = GetComponent<PlayerController>();
+            _enemy = GetComponent<BaseEnemy>();
         }
         catch (NullReferenceException e)
         {
             throw;
         }
         
-        _rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    private void Start()
+    public virtual void Start()
     {
         
     }
@@ -45,12 +47,12 @@ public class Movement : MonoBehaviour
             animator.SetBool("IsMoving",false);
         }
 
-        _rb.MovePosition(_rb.position + movement * (moveSpeed * Time.fixedDeltaTime));
+        rb.MovePosition(rb.position + movement * (moveSpeed * Time.fixedDeltaTime));
         animator.SetFloat("Horizontal",h);
         animator.SetFloat("Vertical",v);
     }
 
-    void AiLocomotion()
+    public virtual void AiLocomotion()
     {
         // ai movement
     }

@@ -13,9 +13,9 @@ public class AnimatorController : MonoBehaviour
         _camera = Camera.main;
     }
     
-    public void CalculateAngleForAnim(Vector2 pos)
+    public void CalculateAngleForAnim(Vector2 pos, Vector2 currentPos)
     {
-        float angleBetween = AngleBetweenVector2(pos);
+        float angleBetween = AngleBetweenVector2(pos, currentPos);
         
         if (angleBetween >= 45 && angleBetween < 135)
         {
@@ -38,9 +38,9 @@ public class AnimatorController : MonoBehaviour
             animator.SetFloat("LookAt",3);
         }
     }
-    private float  AngleBetweenVector2(Vector2 pos)
+    private float  AngleBetweenVector2(Vector2 pos, Vector2 currentPos)
     {
-        Vector2 dir = Input.mousePosition - _camera.WorldToScreenPoint(transform.position);
+        Vector2 dir = pos - currentPos;
         float angle = Mathf.Atan2(dir.y,dir.x) * Mathf.Rad2Deg;
         return angle;
     }
