@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [Header("Movement adjustments")] [SerializeField]
-
     Movement _movement;
     Shooter _shooter;
     TempControl _tempControl;
