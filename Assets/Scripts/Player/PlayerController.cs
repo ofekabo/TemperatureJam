@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
         
         _movement.PlayerMovement(_animator.animator);
         _shooter.UpdateRuntime();
-        _animator.CalculateAngleForAnim(Input.mousePosition);
+        _animator.CalculateAngleForAnim(Input.mousePosition, Camera.main.WorldToScreenPoint(transform.position));
 
         _shooter.AimWeapons(_holdingShift);
 
