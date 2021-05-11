@@ -1,13 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     Movement _movement;
     Shooter _shooter;
-    TempControl _tempControl;
+    [HideInInspector]public TempControl tempControl;
     AnimatorController _animator;
 
     bool _holdingShift;
@@ -17,7 +18,7 @@ public class PlayerController : MonoBehaviour
         _movement = GetComponent<Movement>();
         _shooter = GetComponent<Shooter>();
         _animator = GetComponent<AnimatorController>();
-        _tempControl = GetComponent<TempControl>();
+        tempControl = GetComponent<TempControl>();
     }
 
 
@@ -32,13 +33,13 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             _shooter.LavaShot();
-            _tempControl.ChangeTemp(5);
+            tempControl.ChangeTemp(5);
         }
 
         if (Input.GetMouseButtonDown(1))
         {
             _shooter.IceShot();
-            _tempControl.ChangeTemp(-5);
+            tempControl.ChangeTemp(-5);
         }
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
@@ -51,4 +52,13 @@ public class PlayerController : MonoBehaviour
             _holdingShift = false;
         }
     }
+
+    public void Hit()
+    {
+        if (tempControl.Temperature < tempControl.minTemp || tempControl.Temperature > tempControl.maxTemp)
+        {
+            //die
+        }
+    }
+    
 }

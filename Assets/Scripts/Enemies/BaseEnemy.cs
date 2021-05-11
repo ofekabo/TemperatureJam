@@ -4,7 +4,7 @@ using Pathfinding;
 
 public class BaseEnemy : MonoBehaviour
 {
-    [SerializeField] Transform player;
+    public Transform player;
 
     [Header("State Machine")] public MonsterStateID initState;
     public MonsterStateMachine StateMachine;
@@ -15,6 +15,7 @@ public class BaseEnemy : MonoBehaviour
     [SerializeField] int tempDifference = 3;
     [SerializeField] bool basicHealth = false;
     [HideInInspector] public TempControl tempControl;
+    [HideInInspector] public Attacker attacker;
 
     [Header("A*")] [HideInInspector] public AIPath aiPath;
 
@@ -30,8 +31,11 @@ public class BaseEnemy : MonoBehaviour
     }
 
     public Type enemyType;
+    int damage;
 
     [HideInInspector] public AIMovement movement;
+    
+    
 
     private void Awake()
     {
@@ -39,6 +43,7 @@ public class BaseEnemy : MonoBehaviour
         aiPath = GetComponent<AIPath>();
         movement = GetComponent<AIMovement>();
         animator = GetComponent<AnimatorController>();
+        attacker = GetComponent<Attacker>();
 
         #region StateMachine
 
@@ -51,11 +56,6 @@ public class BaseEnemy : MonoBehaviour
         StateMachine.ChangeState(initState);
 
         #endregion
-    }
-
-    void Start()
-    {
-        
     }
 
     private void Update()
@@ -90,6 +90,26 @@ public class BaseEnemy : MonoBehaviour
         if (enemyType == Type.Ice && tempControl.Temperature >= deathTemp)
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        switch (enemyType)
+        {
+            case Type.Ice:
+                damage = -attacker.damage;
+                break;
+            case Type.Lava:
+                damage = attacker.damage;
+                break;
+        }
+       
+        
+        PlayerController p = other.collider.GetComponent<PlayerController>();
+        if (p)
+        {
+            p.tempControl.ChangeTemp(damage);
         }
     }
 }

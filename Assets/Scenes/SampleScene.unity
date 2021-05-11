@@ -5049,6 +5049,7 @@ GameObject:
   - component: {fileID: 1120475312}
   - component: {fileID: 1120475316}
   - component: {fileID: 1120475317}
+  - component: {fileID: 1120475319}
   m_Layer: 0
   m_Name: IceEnemy
   m_TagString: Untagged
@@ -5117,6 +5118,7 @@ MonoBehaviour:
   tempDifference: 3
   basicHealth: 1
   tempControl: {fileID: 0}
+  attacker: {fileID: 0}
   aiPath: {fileID: 0}
   animator: {fileID: 0}
   enemyType: 1
@@ -5285,6 +5287,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &1120475319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1120475308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7bf0ccc7202eaf45b0513b785fa79c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  delayBetweenAttacks: 1.5
+  distanceToAttack: 2
+  damage: 5
+  returnBackDelay: 0.35
 --- !u!1 &1441334153
 GameObject:
   m_ObjectHideFlags: 0
@@ -7355,6 +7374,7 @@ GameObject:
   - component: {fileID: 2023631157}
   - component: {fileID: 2023631156}
   - component: {fileID: 2023631155}
+  - component: {fileID: 2023631164}
   m_Layer: 0
   m_Name: LavaEnemy
   m_TagString: Untagged
@@ -7469,6 +7489,7 @@ MonoBehaviour:
   tempDifference: 3
   basicHealth: 1
   tempControl: {fileID: 0}
+  attacker: {fileID: 0}
   aiPath: {fileID: 0}
   animator: {fileID: 0}
   enemyType: 0
@@ -7591,6 +7612,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2023631164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2023631153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7bf0ccc7202eaf45b0513b785fa79c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 768627174}
+  delayBetweenAttacks: 1.5
+  distanceToAttack: 2
+  damage: 5
+  returnBackDelay: 0.35
 --- !u!1001 &6247503925040607440
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7645,10 +7683,6 @@ PrefabInstance:
     - target: {fileID: 6247503925130032845, guid: 14e548bb036e9cd46b7acb1f1e64fc73, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6247503925130032846, guid: 14e548bb036e9cd46b7acb1f1e64fc73, type: 3}
-      propertyPath: bulletPushForce
-      value: 500
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14e548bb036e9cd46b7acb1f1e64fc73, type: 3}

@@ -3,8 +3,8 @@ using UnityEngine;
 public class TempControl : MonoBehaviour
 {
     [SerializeField] private int initTemp;
-    [SerializeField] private int maxTemp = 50;
-    [SerializeField] private int minTemp = 20;
+    public  int maxTemp = 50;
+    public int minTemp = 20;
 
     [Header("Read Only")]
     [SerializeField] private int temperature;
@@ -20,6 +20,8 @@ public class TempControl : MonoBehaviour
     private void Start()
     {
         temperature = initTemp;
+        
+        if(!tempUI) { return; }
         tempUI.UpdateText();
     }
 
