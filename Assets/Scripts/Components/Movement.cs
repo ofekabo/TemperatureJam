@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    [SerializeField]protected float moveSpeed = 5f;
+    [SerializeField] protected float moveSpeed = 5f;
 
     protected Rigidbody2D rb;
     private PlayerController _player;
@@ -22,34 +22,33 @@ public class Movement : MonoBehaviour
         {
             throw;
         }
-        
+
         rb = GetComponent<Rigidbody2D>();
     }
 
     public virtual void Start()
     {
-        
     }
-    
+
 
     public void PlayerMovement(Animator animator)
     {
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
-        
-        Vector2 movement = new Vector2(h,v);
+
+        Vector2 movement = new Vector2(h, v);
         if (Mathf.Abs(movement.magnitude) > 0)
         {
-            animator.SetBool("IsMoving",true);
+            animator.SetBool("IsMoving", true);
         }
         else
         {
-            animator.SetBool("IsMoving",false);
+            animator.SetBool("IsMoving", false);
         }
 
         rb.MovePosition(rb.position + movement * (moveSpeed * Time.fixedDeltaTime));
-        animator.SetFloat("Horizontal",h);
-        animator.SetFloat("Vertical",v);
+        animator.SetFloat("Horizontal", h);
+        animator.SetFloat("Vertical", v);
     }
 
     public virtual void AiLocomotion()

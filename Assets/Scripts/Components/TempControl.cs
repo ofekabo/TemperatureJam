@@ -10,23 +10,24 @@ public class TempControl : MonoBehaviour
     [SerializeField] private int temperature;
     public int Temperature => temperature;
 
-    private TempUIOverhead _tempUI;
+    public TempUIOverhead tempUI;
 
     private void Awake()
     {
-        _tempUI = GetComponentInChildren<TempUIOverhead>();
+        tempUI = GetComponentInChildren<TempUIOverhead>();
     }
 
     private void Start()
     {
         temperature = initTemp;
+        tempUI.UpdateText();
     }
 
     public void ChangeTempAI(int amount)
     {
         temperature += amount;
         temperature = Mathf.Clamp(temperature, minTemp, maxTemp);
-        _tempUI.UpdateText();
+        tempUI.UpdateText();
     }
     public void ChangeTemp(int amount)
     {

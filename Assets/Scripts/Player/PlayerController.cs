@@ -23,7 +23,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        
         _movement.PlayerMovement(_animator.animator);
         _shooter.UpdateRuntime();
         _animator.CalculateAngleForAnim(Input.mousePosition, Camera.main.WorldToScreenPoint(transform.position));

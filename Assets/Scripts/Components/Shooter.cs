@@ -13,6 +13,8 @@ public class Shooter : MonoBehaviour, IRuntime
     [Tooltip("Each X seconds a projectile will be fired")] [SerializeField]
     float fireRate;
 
+    [SerializeField] float bulletPushForce;
+
     private float _lavafireInterval;
     private float _icefireInterval;
     private Weapon[] _weapons;
@@ -28,6 +30,10 @@ public class Shooter : MonoBehaviour, IRuntime
     {
         _cam = Camera.main;
         _weapons = GetComponentsInChildren<Weapon>();
+        foreach (var wep in _weapons)
+        {
+            wep.bulletProjectile.force = bulletPushForce;
+        }
     }
 
     public void UpdateRuntime()
@@ -57,18 +63,6 @@ public class Shooter : MonoBehaviour, IRuntime
 
     #region Player
 
-    // public void PlayerAim(float turnSpeed)
-    // {
-    //     Vector2 target = (Input.mousePosition - transform.position).normalized;
-    //     
-    //     if (Vector2.Dot(target, transform.forward) < 0.5) // currently bugged dot prudoct is always 0
-    //     {
-    //         transform.rotation = Quaternion.Lerp(transform.rotation, LookAtMouse(Input.mousePosition),
-    //             Time.deltaTime * turnSpeed);
-    //     }
-    //   
-    // }
-
     Quaternion LookAtMouse(Vector3 mousePos)
     {
         Vector2 dir = mousePos - _cam.WorldToScreenPoint(transform.position);
@@ -81,7 +75,7 @@ public class Shooter : MonoBehaviour, IRuntime
     public void AimWeapons(bool holdingShift)
     {
         _weapons[Lava].transform.parent.rotation = LookAtMouse(Input.mousePosition);
-        
+
         if (!holdingShift)
         {
             _weapons[Ice].transform.parent.rotation = LookAtMouse(Input.mousePosition);

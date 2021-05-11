@@ -6,31 +6,25 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     [SerializeField] Transform shootingPoint;
-    [SerializeField] Projectile lavaBulletPrefab;
-    [SerializeField] Projectile iceBulletPrefab;
+
+    public PlayerProjectile bulletProjectile;
+
+    // public PlayerProjectile iceBulletPrefab;
     [SerializeField] float bulletSpeed;
     [SerializeField] float bulletLifeTime = 1.5f;
 
-    public enum weaponType {Lava,Ice};
- 
+    public enum weaponType
+    {
+        Lava,
+        Ice
+    };
+
     public weaponType WeaponType;
 
     public void Shoot()
     {
-        switch (WeaponType)
-        {
-            case weaponType.Ice:
-                var bulletIce = Instantiate(iceBulletPrefab,shootingPoint.position,shootingPoint.rotation);
-                bulletIce.speed = bulletSpeed;
-                bulletIce.lifeTime = bulletLifeTime;
-                break;
-            
-            case weaponType.Lava:
-                var bulletLava = Instantiate(lavaBulletPrefab,shootingPoint.position,shootingPoint.rotation);
-                bulletLava.speed = bulletSpeed;
-                bulletLava.lifeTime = bulletLifeTime;
-                break;
-        }
-
+        var bullet = Instantiate(bulletProjectile, shootingPoint.position, shootingPoint.rotation);
+        bullet.speed = bulletSpeed;
+        bullet.lifeTime = bulletLifeTime;
     }
 }

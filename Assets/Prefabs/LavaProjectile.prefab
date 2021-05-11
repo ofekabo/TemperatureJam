@@ -245,6 +245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   lifeTime: 0
+  hitEffect: {fileID: 3947436297928201848, guid: 8426bd5dd28b60e48981c0283c3dfea7, type: 3}
   bulletType: 1
 --- !u!50 &2708553159421444756
 Rigidbody2D:
