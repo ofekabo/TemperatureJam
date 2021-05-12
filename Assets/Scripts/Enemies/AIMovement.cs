@@ -48,8 +48,15 @@ public class AIMovement : Movement
             return;
         }
 
+<<<<<<< Updated upstream
         if (_currentWaypoint >= _path.vectorPath.Count) { return; }
         
+=======
+        if (_currentWaypoint >= _path.vectorPath.Count)
+        {
+            return;
+        }
+>>>>>>> Stashed changes
 
         Vector2 direction = ((Vector2) _path.vectorPath[_currentWaypoint] - rb.position).normalized;
         Vector2 force = direction * (moveSpeed * Time.deltaTime);

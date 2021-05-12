@@ -593,8 +593,13 @@ GameObject:
   - component: {fileID: 6247503925130032842}
   - component: {fileID: 6247503925130032846}
   - component: {fileID: 6247503925130032880}
+<<<<<<< Updated upstream
   - component: {fileID: 5609677542457414102}
   - component: {fileID: 1031856194484732632}
+=======
+  - component: {fileID: 1840765570640530931}
+  - component: {fileID: 1476114560}
+>>>>>>> Stashed changes
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -790,7 +795,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
+<<<<<<< Updated upstream
 --- !u!114 &5609677542457414102
+=======
+--- !u!114 &1840765570640530931
+>>>>>>> Stashed changes
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -799,6 +808,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6247503925130032841}
   m_Enabled: 1
   m_EditorHideFlags: 0
+<<<<<<< Updated upstream
   m_Script: {fileID: 11500000, guid: f1773bfc599b30445914dc4af64672b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -811,6 +821,14 @@ MonoBehaviour:
   damageEachXTime: 1
   selfDamage: 2
 --- !u!114 &1031856194484732632
+=======
+  m_Script: {fileID: 11500000, guid: a6f227adc4b8a9245b8cf146b8965364, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initHealth: 50
+  maxHealth: 100
+--- !u!114 &1476114560
+>>>>>>> Stashed changes
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -819,11 +837,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 6247503925130032841}
   m_Enabled: 1
   m_EditorHideFlags: 0
+<<<<<<< Updated upstream
   m_Script: {fileID: 11500000, guid: a6f227adc4b8a9245b8cf146b8965364, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   initHealth: 50
   maxHealth: 100
+=======
+  m_Script: {fileID: 11500000, guid: f1773bfc599b30445914dc4af64672b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  temperature: 0
+  initTemp: 30
+  maxTemp: 100
+  minTemp: 0
+  tempUI: {fileID: 0}
+  tempDifference: 10
+>>>>>>> Stashed changes
 --- !u!1 &6247503925228170260
 GameObject:
   m_ObjectHideFlags: 0
