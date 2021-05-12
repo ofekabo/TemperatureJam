@@ -4,25 +4,29 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerProjectile : BaseProjectile
+public class EnemiesProjectile : BaseProjectile
 {
+    public int healthDamage;
+    public int tempDamage;
+    
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-
-        BaseEnemy enemy = other.GetComponent<BaseEnemy>();
-        TempControl temp = other.GetComponent<TempControl>();
+        PlayerController p = other.GetComponent<PlayerController>();
         Rigidbody2D rb = other.GetComponent<Rigidbody2D>();
-        if (temp && enemy)
+        TempControl temp = other.GetComponent<TempControl>();
+        HealthComp pHealth = other.GetComponent<HealthComp>();
+        if (p)
         {
+           
             if (bulletType == Type.Ice)
             {
-                temp.ChangeTempAI(-6);
+                temp.ChangeTemp(-tempDamage);
             }
 
             if (bulletType == Type.Lava)
             {
-                temp.ChangeTempAI(5);
+                temp.ChangeTemp(tempDamage);
             }
 
             if (rb)
@@ -31,11 +35,10 @@ public class PlayerProjectile : BaseProjectile
                 rb.AddForce(dir * force);
             }
 
-            enemy.UpdateTemp();
+            pHealth.TakeDamage(healthDamage);
         }
-
-
-            SpawnEffectNDestroy();
         
+        SpawnEffectNDestroy();
     }
 }
+

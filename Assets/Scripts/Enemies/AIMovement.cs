@@ -20,8 +20,6 @@ public class AIMovement : Movement
 
     public override void Start()
     {
-        Debug.unityLogger.logEnabled = false;
-        
         _seeker = GetComponent<Seeker>();
         target = GetComponent<BaseEnemy>().player;
         

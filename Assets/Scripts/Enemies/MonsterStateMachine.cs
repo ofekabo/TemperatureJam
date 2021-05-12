@@ -30,6 +30,7 @@ public class MonsterStateMachine
     public void Update()
     {
         GetState(currentState)?.Update(enemy);
+        
     }
 
     public void ChangeState(MonsterStateID newState)

@@ -7,9 +7,9 @@ public class Weapon : MonoBehaviour
 {
     [SerializeField] Transform shootingPoint;
 
-    public PlayerProjectile bulletProjectile;
+    public BaseProjectile bulletProjectile;
 
-    // public PlayerProjectile iceBulletPrefab;
+    // public BaseProjectile iceBulletPrefab;
     [SerializeField] float bulletSpeed;
     [SerializeField] float bulletLifeTime = 1.5f;
 

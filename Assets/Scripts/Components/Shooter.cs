@@ -17,7 +17,7 @@ public class Shooter : MonoBehaviour, IRuntime
 
     private float _lavafireInterval;
     private float _icefireInterval;
-    private Weapon[] _weapons;
+    [SerializeField]private Weapon[] _weapons;
 
     #region Player
 
@@ -61,11 +61,11 @@ public class Shooter : MonoBehaviour, IRuntime
     }
 
 
-    #region Player
+    #region Aim
 
-    Quaternion LookAtMouse(Vector3 mousePos)
+    Quaternion LookAtTarget(Vector3 targetPos ,Vector3 currentPos)
     {
-        Vector2 dir = mousePos - _cam.WorldToScreenPoint(transform.position);
+        Vector2 dir = targetPos - currentPos;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 
         Quaternion targetRotation = Quaternion.AngleAxis(angle, Vector3.forward);
@@ -74,20 +74,27 @@ public class Shooter : MonoBehaviour, IRuntime
 
     public void AimWeapons(bool holdingShift)
     {
-        _weapons[Lava].transform.parent.rotation = LookAtMouse(Input.mousePosition);
+        _weapons[Lava].transform.parent.rotation = LookAtTarget(Input.mousePosition, _cam.WorldToScreenPoint(transform.position));
 
         if (!holdingShift)
         {
-            _weapons[Ice].transform.parent.rotation = LookAtMouse(Input.mousePosition);
+            _weapons[Ice].transform.parent.rotation = LookAtTarget(Input.mousePosition, _cam.WorldToScreenPoint(transform.position));
             _stoppedMousePos = Input.mousePosition;
         }
-
-
+        
         if (holdingShift)
         {
-            _weapons[Ice].transform.parent.rotation = LookAtMouse(_stoppedMousePos);
+            _weapons[Ice].transform.parent.rotation = LookAtTarget(_stoppedMousePos, _cam.WorldToScreenPoint(transform.position));
         }
     }
+    
+    public void AiAimWeapons(int index,Vector2 targetPos, Vector2 currentPos)
+    {
+        _weapons[index].transform.rotation = LookAtTarget(targetPos,currentPos);
+
+       
+    }
+    
 
     #endregion
 }

@@ -24,7 +24,6 @@ public class BaseEnemy : MonoBehaviour
 
     [Header("Animation")]
     [HideInInspector] public AnimatorController animator;
-
     [HideInInspector] public AIMovement movement;
 
     public enum Type
@@ -47,7 +46,7 @@ public class BaseEnemy : MonoBehaviour
     #endregion
 
 
-    private void Awake()
+    public virtual void Awake()
     {
         tempControl = GetComponent<TempControl>();
         aiPath = GetComponent<AIPath>();
@@ -61,21 +60,24 @@ public class BaseEnemy : MonoBehaviour
         }
         
         #region StateMachine
-
-        StateMachine = new MonsterStateMachine(this);
-
-        // register states
-        StateMachine.RegisterState(new AiAttackPlayerState());
-        StateMachine.RegisterState(new AiDeathState());
-
-        StateMachine.ChangeState(initState);
-
-        #endregion
         
+        RegisterStates();
+        StateMachine.ChangeState(initState);
+        
+        #endregion
         _canDamage = true;
     }
 
-    private void Update()
+    public virtual void RegisterStates()
+    {
+        // register states
+        StateMachine = new MonsterStateMachine(this);
+        
+        StateMachine.RegisterState(new CubeAttackPlayerState());
+        StateMachine.RegisterState(new AiDeathState());
+    }
+
+    public virtual void Update()
     {
         StateMachine.Update();
         animator.CalculateAngleForAnim(new Vector2(player.position.x, player.position.y), transform.position);
@@ -124,23 +126,27 @@ public class BaseEnemy : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        switch (enemyType)
+        if (attacker)
         {
-            case Type.Ice:
-                _tempDamage = -attacker.tempDamage;
-                break;
-            case Type.Lava:
-                _tempDamage = attacker.tempDamage;
-                break;
-        }
-       
-        
-        PlayerController p = other.collider.GetComponent<PlayerController>();
-        if (p && _canDamage)
-        {
-            p.tempControl.ChangeTemp(_tempDamage);
-            p.healthComp.TakeDamage(attacker.healthDamage);
-            _canDamage = false;
+            switch (enemyType)
+            {
+                case Type.Ice: 
+                    _tempDamage = -attacker.tempDamage;
+                    break;
+                case Type.Lava:
+                    _tempDamage = attacker.tempDamage;
+                    break;
+            }
+
+
+
+            PlayerController p = other.collider.GetComponent<PlayerController>();
+            if (p && _canDamage)
+            {
+                p.tempControl.ChangeTemp(_tempDamage);
+                p.healthComp.TakeDamage(attacker.healthDamage);
+                _canDamage = false;
+            }
         }
     }
 }

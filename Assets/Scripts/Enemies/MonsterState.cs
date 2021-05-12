@@ -12,10 +12,9 @@ public enum MonsterStateID
 
 public interface MonsterState
 {
-   MonsterStateID GetID();
-   
-   void Enter(BaseEnemy enemy);
-   void Update(BaseEnemy enemy);
-   void Exit(BaseEnemy enemy);
-   
+    MonsterStateID GetID();
+
+    void Enter(BaseEnemy enemy);
+    void Update(BaseEnemy enemy);
+    void Exit(BaseEnemy enemy);
 }

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1727220279194332020}
   - component: {fileID: 4446404963779135023}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,7 +119,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5298332798378730675}
   - component: {fileID: 8866133031106135103}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,10 +201,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8323378664115999518}
-  - component: {fileID: 2318222188805896702}
   - component: {fileID: 2708553159421444756}
   - component: {fileID: -4800686110744018080}
-  m_Layer: 0
+  - component: {fileID: 3978268285309480902}
+  m_Layer: 7
   m_Name: IceProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -227,22 +227,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2318222188805896702
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8186843868175866373}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56fba10990a2be549ab87738d349272a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0
-  lifeTime: 0
-  hitEffect: {fileID: 5053693205275578062, guid: c14819d8fe55c514ba597364d56f1e4f, type: 3}
-  bulletType: 0
 --- !u!50 &2708553159421444756
 Rigidbody2D:
   serializedVersion: 4
@@ -280,3 +264,20 @@ CircleCollider2D:
   m_Offset: {x: 0.058850124, y: -0.013580719}
   serializedVersion: 2
   m_Radius: 0.21933024
+--- !u!114 &3978268285309480902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8186843868175866373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c841aa8c084f998499fd49a7922c0416, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  lifeTime: 0
+  hitEffect: {fileID: 5053693205275578062, guid: c14819d8fe55c514ba597364d56f1e4f, type: 3}
+  force: 250
+  bulletType: 0

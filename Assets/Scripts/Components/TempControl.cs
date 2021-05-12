@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class TempControl : MonoBehaviour
@@ -5,8 +6,7 @@ public class TempControl : MonoBehaviour
     [Header("Read Only")]
     [SerializeField] private int temperature;
     public int Temperature { get => temperature; }
-    
-    
+
     [Header("Temp Control")]
     [SerializeField] private int initTemp;
     public  int maxTemp = 50;
@@ -25,7 +25,6 @@ public class TempControl : MonoBehaviour
     private void Start()
     {
         temperature = initTemp;
-        
         if(!tempUI) { return; }
         tempUI.UpdateText();
     }
@@ -34,7 +33,8 @@ public class TempControl : MonoBehaviour
     {
         temperature += amount;
         temperature = Mathf.Clamp(temperature, minTemp, maxTemp);
-        tempUI.UpdateText();
+        if(tempUI)
+            tempUI.UpdateText();
     }
     public virtual void ChangeTemp(int amount)
     {

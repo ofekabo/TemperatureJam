@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AiAttackPlayerState : MonsterState
+public class CubeAttackPlayerState : MonsterState
 {
     private Attacker _attacker;
     private float _attackInterval;

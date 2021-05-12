@@ -572,7 +572,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootingPoint: {fileID: 6247503925228170261}
-  bulletProjectile: {fileID: 2318222188805896702, guid: b4e398de069543146b936efb38a7e034, type: 3}
+  bulletProjectile: {fileID: 3978268285309480902, guid: b4e398de069543146b936efb38a7e034, type: 3}
   bulletSpeed: 15
   bulletLifeTime: 1.5
   WeaponType: 1
@@ -595,7 +595,7 @@ GameObject:
   - component: {fileID: 6247503925130032880}
   - component: {fileID: 5609677542457414102}
   - component: {fileID: 1031856194484732632}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -808,8 +808,8 @@ MonoBehaviour:
   minTemp: 0
   tempUI: {fileID: 0}
   tempDifference: 10
-  damageEachXTime: 1
   selfDamage: 2
+  damageEachXTime: 1
 --- !u!114 &1031856194484732632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -982,7 +982,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootingPoint: {fileID: 6247503925707061896}
-  bulletProjectile: {fileID: 2318222188805896702, guid: 665a2b9a98945aa4f803bd32642436a0, type: 3}
+  bulletProjectile: {fileID: 5309825634347481929, guid: 665a2b9a98945aa4f803bd32642436a0, type: 3}
   bulletSpeed: 15
   bulletLifeTime: 1.5
   WeaponType: 0
