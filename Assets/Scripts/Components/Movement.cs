@@ -20,7 +20,7 @@ public class Movement : MonoBehaviour
         }
         catch (NullReferenceException e)
         {
-            throw;
+            Debug.Log(e);
         }
 
         rb = GetComponent<Rigidbody2D>();

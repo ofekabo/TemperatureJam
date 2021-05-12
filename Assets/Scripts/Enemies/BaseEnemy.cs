@@ -4,25 +4,28 @@ using Pathfinding;
 
 public class BaseEnemy : MonoBehaviour
 {
+   
+
+    [Header("State Machine")]
+    public MonsterStateID initState;
+    public MonsterStateMachine StateMachine;
     public Transform player;
 
-    [Header("State Machine")] public MonsterStateID initState;
-    public MonsterStateMachine StateMachine;
-
-    [Header("Temp Control")] [SerializeField]
-    int deathTemp;
-
+    [Header("Temp Control")]
+    [SerializeField] int deathTemp;
     [SerializeField] int tempDifference = 3;
     [SerializeField] bool basicHealth = false;
     [HideInInspector] public TempControl tempControl;
     [HideInInspector] public Attacker attacker;
-
-    [Header("A*")] [HideInInspector] public AIPath aiPath;
-
-    [Header("Animation")] [HideInInspector]
-    public AnimatorController animator;
-
     public int DeathTemp => deathTemp;
+    
+    [Header("A*")]
+    [HideInInspector] public AIPath aiPath;
+
+    [Header("Animation")]
+    [HideInInspector] public AnimatorController animator;
+
+    [HideInInspector] public AIMovement movement;
 
     public enum Type
     {
@@ -31,11 +34,18 @@ public class BaseEnemy : MonoBehaviour
     }
 
     public Type enemyType;
-    int damage;
+    
+    
+    int _tempDamage;
 
-    [HideInInspector] public AIMovement movement;
+    #region Collision Fix
     
+    bool _canDamage;
+    float _fixInterval;
+    float colliderFixDelay = 0.1f;
     
+    #endregion
+
 
     private void Awake()
     {
@@ -56,12 +66,26 @@ public class BaseEnemy : MonoBehaviour
         StateMachine.ChangeState(initState);
 
         #endregion
+        
+        _canDamage = true;
     }
 
     private void Update()
     {
         StateMachine.Update();
         animator.CalculateAngleForAnim(new Vector2(player.position.x, player.position.y), transform.position);
+
+        #region Collision Fix
+
+        _fixInterval += Time.deltaTime;
+            if (_canDamage == false && _fixInterval > colliderFixDelay)
+            {
+                _canDamage = true;
+                _fixInterval = 0;
+            }
+            
+        #endregion
+        
     }
 
     private void FixedUpdate()
@@ -98,18 +122,20 @@ public class BaseEnemy : MonoBehaviour
         switch (enemyType)
         {
             case Type.Ice:
-                damage = -attacker.damage;
+                _tempDamage = -attacker.tempDamage;
                 break;
             case Type.Lava:
-                damage = attacker.damage;
+                _tempDamage = attacker.tempDamage;
                 break;
         }
        
         
         PlayerController p = other.collider.GetComponent<PlayerController>();
-        if (p)
+        if (p && _canDamage)
         {
-            p.tempControl.ChangeTemp(damage);
+            p.tempControl.ChangeTemp(_tempDamage);
+            p.healthComp.TakeDamage(attacker.healthDamage);
+            _canDamage = false;
         }
     }
 }

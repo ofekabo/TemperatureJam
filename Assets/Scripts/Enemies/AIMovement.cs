@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 using Pathfinding;
+using Debug = UnityEngine.Debug;
 
 public class AIMovement : Movement
 {
@@ -11,7 +13,6 @@ public class AIMovement : Movement
 
     Path _path;
     int _currentWaypoint = 0;
-    bool reachedEndOfPath = false;
 
     Seeker _seeker;
 
@@ -19,6 +20,7 @@ public class AIMovement : Movement
 
     public override void Start()
     {
+        Debug.unityLogger.logEnabled = false;
         _seeker = GetComponent<Seeker>();
         InvokeRepeating("UpdatePath", 0.0f, 0.5f);
         _initSpeed = moveSpeed;
@@ -46,14 +48,8 @@ public class AIMovement : Movement
             return;
         }
 
-        if (_currentWaypoint >= _path.vectorPath.Count)
-        {
-            reachedEndOfPath = true;
-        }
-        else
-        {
-            reachedEndOfPath = false;
-        }
+        if (_currentWaypoint >= _path.vectorPath.Count) { return; }
+        
 
         Vector2 direction = ((Vector2) _path.vectorPath[_currentWaypoint] - rb.position).normalized;
         Vector2 force = direction * (moveSpeed * Time.deltaTime);

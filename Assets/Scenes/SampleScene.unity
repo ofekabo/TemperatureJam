@@ -5095,10 +5095,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b90689437e57aab49b81f3ea6314df65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  temperature: 0
   initTemp: 20
   maxTemp: 50
   minTemp: 20
-  temperature: 0
   tempUI: {fileID: 0}
 --- !u!114 &1120475311
 MonoBehaviour:
@@ -5112,8 +5112,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9ee1b63d42441343aa80c352523a959, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 768627174}
   initState: 0
+  player: {fileID: 768627174}
   deathTemp: 42
   tempDifference: 3
   basicHealth: 1
@@ -5121,8 +5121,8 @@ MonoBehaviour:
   attacker: {fileID: 0}
   aiPath: {fileID: 0}
   animator: {fileID: 0}
-  enemyType: 1
   movement: {fileID: 0}
+  enemyType: 1
 --- !u!114 &1120475312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5302,7 +5302,8 @@ MonoBehaviour:
   player: {fileID: 0}
   delayBetweenAttacks: 1.5
   distanceToAttack: 2
-  damage: 5
+  tempDamage: 5
+  healthDamage: 5
   returnBackDelay: 0.35
 --- !u!1 &1441334153
 GameObject:
@@ -7466,10 +7467,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b90689437e57aab49b81f3ea6314df65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  temperature: 0
   initTemp: 50
   maxTemp: 50
   minTemp: 20
-  temperature: 0
   tempUI: {fileID: 0}
 --- !u!114 &2023631159
 MonoBehaviour:
@@ -7483,8 +7484,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9ee1b63d42441343aa80c352523a959, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 768627174}
   initState: 0
+  player: {fileID: 768627174}
   deathTemp: 20
   tempDifference: 3
   basicHealth: 1
@@ -7492,8 +7493,8 @@ MonoBehaviour:
   attacker: {fileID: 0}
   aiPath: {fileID: 0}
   animator: {fileID: 0}
-  enemyType: 0
   movement: {fileID: 0}
+  enemyType: 0
 --- !u!95 &2023631160
 Animator:
   serializedVersion: 3
@@ -7627,7 +7628,8 @@ MonoBehaviour:
   player: {fileID: 768627174}
   delayBetweenAttacks: 1.5
   distanceToAttack: 2
-  damage: 5
+  tempDamage: 5
+  healthDamage: 5
   returnBackDelay: 0.35
 --- !u!1001 &6247503925040607440
 PrefabInstance:

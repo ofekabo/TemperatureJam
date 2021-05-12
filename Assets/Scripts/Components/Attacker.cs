@@ -8,7 +8,8 @@ public class Attacker : MonoBehaviour
     [HideInInspector] public Transform player;
     public float delayBetweenAttacks = 1f;
     public float distanceToAttack = 2f;
-    public int damage = 5;
+    public int tempDamage = 5;
+    public int healthDamage = 5;
     [SerializeField] float returnBackDelay = 0.2f;
     private Rigidbody2D _rb;
 

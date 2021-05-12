@@ -8,17 +8,23 @@ public class PlayerController : MonoBehaviour
 {
     Movement _movement;
     Shooter _shooter;
-    [HideInInspector]public TempControl tempControl;
     AnimatorController _animator;
+    [HideInInspector]public PlayerTempControl tempControl;
+    [HideInInspector] public HealthComp healthComp;
 
     bool _holdingShift;
+    Camera _mainCam;
+    bool _isCoroutineRunning;
 
     void Start()
     {
         _movement = GetComponent<Movement>();
         _shooter = GetComponent<Shooter>();
         _animator = GetComponent<AnimatorController>();
-        tempControl = GetComponent<TempControl>();
+        tempControl = GetComponent<PlayerTempControl>();
+        healthComp = GetComponent<HealthComp>();
+        _mainCam = Camera.main;
+        tempControl.OnChangeTemp += Hit;
     }
 
 
@@ -26,7 +32,7 @@ public class PlayerController : MonoBehaviour
     {
         _movement.PlayerMovement(_animator.animator);
         _shooter.UpdateRuntime();
-        _animator.CalculateAngleForAnim(Input.mousePosition, Camera.main.WorldToScreenPoint(transform.position));
+        _animator.CalculateAngleForAnim(Input.mousePosition, _mainCam.WorldToScreenPoint(transform.position));
 
         _shooter.AimWeapons(_holdingShift);
 
@@ -53,12 +59,43 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void Hit()
+    private void Hit()
     {
-        if (tempControl.Temperature < tempControl.minTemp || tempControl.Temperature > tempControl.maxTemp)
+        
+        if (healthComp.CurrentHealth <= 0)
         {
             //die
         }
+        
+        if (Mathf.Abs(tempControl.Temperature - tempControl.minTemp) <= tempControl.tempDifference
+        ||
+        Mathf.Abs(tempControl.Temperature - tempControl.maxTemp) <= tempControl.tempDifference)
+        {
+            if (!_isCoroutineRunning)
+            {
+                StartCoroutine(nameof(ReduceHealthEachXTime));
+                _isCoroutineRunning = true;
+            }
+                
+        }
+        else
+        {
+            StopCoroutine(nameof(ReduceHealthEachXTime));
+            _isCoroutineRunning = false;
+        }
     }
-    
+
+    IEnumerator ReduceHealthEachXTime()
+    {
+        while (true)
+        {
+            healthComp.TakeDamage(tempControl.selfDamage);
+            yield return new WaitForSeconds(tempControl.damageEachXTime);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        tempControl.OnChangeTemp -= Hit;
+    }
 }
