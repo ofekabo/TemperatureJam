@@ -89,11 +89,7 @@ public class PlayerController : MonoBehaviour
     {
         while (true)
         {
-<<<<<<< Updated upstream
             healthComp.TakeDamage(tempControl.selfDamage);
-=======
-            healthComp.TakeDamage(2);
->>>>>>> Stashed changes
             yield return new WaitForSeconds(tempControl.damageEachXTime);
         }
     }

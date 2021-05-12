@@ -8,13 +8,7 @@ public class Attacker : MonoBehaviour
     [HideInInspector] public Transform player;
     public float delayBetweenAttacks = 1f;
     public float distanceToAttack = 2f;
-<<<<<<< Updated upstream
     public int tempDamage = 5;
-=======
-    [Tooltip("Temperature changed applied to temp control based on ice/lava enemy type")]
-    public int tempDamage = 5;
-    [Tooltip("Damage applied to player health component")]
->>>>>>> Stashed changes
     public int healthDamage = 5;
     [SerializeField] float returnBackDelay = 0.2f;
     private Rigidbody2D _rb;
