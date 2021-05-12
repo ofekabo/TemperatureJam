@@ -4,6 +4,7 @@ public class TempControl : MonoBehaviour
 {   
     [Header("Read Only")]
     [SerializeField] private int temperature;
+    public int Temperature { get => temperature; }
     
     
     [Header("Temp Control")]
@@ -12,7 +13,7 @@ public class TempControl : MonoBehaviour
     public int minTemp = 20;
 
   
-    public int Temperature => temperature;
+    
 
     [HideInInspector]public TempUIOverhead tempUI;
 

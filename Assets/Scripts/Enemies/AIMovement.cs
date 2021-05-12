@@ -21,7 +21,10 @@ public class AIMovement : Movement
     public override void Start()
     {
         Debug.unityLogger.logEnabled = false;
+        
         _seeker = GetComponent<Seeker>();
+        target = GetComponent<BaseEnemy>().player;
+        
         InvokeRepeating("UpdatePath", 0.0f, 0.5f);
         _initSpeed = moveSpeed;
     }

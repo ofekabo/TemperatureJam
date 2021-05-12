@@ -12,10 +12,24 @@ public class GameEvents : MonoBehaviour
         Current = this;
     }
     
-    public event Action<int> onDoorWayTriggerEnter;
+    public event Action<int> OnDoorwayTriggerEnterSpawner;
+    public event Action<Transform> OnDoorWayTriggerEnterCamera;
 
-    public void DoorwayTriggerEnter(int id)
+    public void DoorwayTriggerEnter(int id,Transform nextCamPos)
     {
-        onDoorWayTriggerEnter?.Invoke(id);
+        OnDoorwayTriggerEnterSpawner?.Invoke(id);
+        OnDoorWayTriggerEnterCamera?.Invoke(nextCamPos);
     }
+
+    #region PlayerEvents
+    public event Action OnPlayerChangeTemp;
+
+    public void CallPlayerChangeTemp()
+    {
+        OnPlayerChangeTemp?.Invoke();
+    }
+        
+
+    #endregion
+    
 }

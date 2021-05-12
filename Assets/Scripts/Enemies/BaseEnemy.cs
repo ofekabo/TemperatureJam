@@ -55,6 +55,11 @@ public class BaseEnemy : MonoBehaviour
         animator = GetComponent<AnimatorController>();
         attacker = GetComponent<Attacker>();
 
+        if (player == null)
+        {
+            player = FindObjectOfType<PlayerController>().transform;
+        }
+        
         #region StateMachine
 
         StateMachine = new MonsterStateMachine(this);

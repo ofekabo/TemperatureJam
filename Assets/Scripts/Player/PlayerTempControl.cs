@@ -17,5 +17,13 @@ public class PlayerTempControl : TempControl
     {
         base.ChangeTemp(amount);
         OnChangeTemp?.Invoke();
+        GameEvents.Current.CallPlayerChangeTemp();
     }
+    
+    public float TempInPrecentage()
+    {
+        float currentPrecentage = (float)Temperature / maxTemp * 100;
+        return  currentPrecentage;
+    }
+
 }

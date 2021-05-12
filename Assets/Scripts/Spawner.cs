@@ -1,18 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Numerics;
-using Unity.VisualScripting;
 using UnityEngine;
-using Quaternion = UnityEngine.Quaternion;
-using Random = System.Random;
-using Vector2 = UnityEngine.Vector2;
-using Vector3 = UnityEngine.Vector3;
 
 public class Spawner : MonoBehaviour
 {
+    /// <summary>
+    /// write the id of the doorway trigger
+    /// </summary>
+    [SerializeField] int id;
+    [SerializeField] float distFactor =1;
     
-
     [System.Serializable]
     public class EnemiesToSpawn
     {
@@ -21,8 +19,7 @@ public class Spawner : MonoBehaviour
     }
     
     public EnemiesToSpawn[] enemies;
-    
-    [SerializeField] float distFactor;
+
     
     [Header("Debugging")]
     public List<Vector2> gridPositions;
@@ -30,10 +27,14 @@ public class Spawner : MonoBehaviour
     [SerializeField] SpriteRenderer spawnerSprite;
     
 
+    bool _spawned;
+    
     private void Start()
     {
         spawnerSprite = GetComponent<SpriteRenderer>();
-       Invoke(nameof(DelayedGridPos),0.1f);
+        Invoke(nameof(DelayedGridPos),0.1f);
+        GameEvents.Current.OnDoorwayTriggerEnterSpawner += StartCor;
+        _spawned = false;
     }
 
     void DelayedGridPos()
@@ -60,14 +61,16 @@ public class Spawner : MonoBehaviour
     }
 
     [ContextMenu("Spawn Enemies")]
-    void StartCor()
-    {
-        StartCoroutine(nameof(SpawnEnemies));
+    void StartCor(int id)
+    {  if(id == this.id && !_spawned)
+        {
+            StartCoroutine(nameof(SpawnEnemies));
+        }
     }
     
-   
     IEnumerator SpawnEnemies()
     {
+      
         foreach (var enemy in enemies)
         {
             for (int i = 0; i < enemy.spawnAmount; i++)
@@ -82,6 +85,7 @@ public class Spawner : MonoBehaviour
                 }
             }
         }
+        _spawned = true;
     }
 
     Vector3 GetRandomPos()
