@@ -28,6 +28,19 @@ public class GameEvents : MonoBehaviour
     {
         OnPlayerChangeTemp?.Invoke();
     }
+    public event Action OnPlayerTakeDamage;
+
+    public void CallPlayerUpdateHealth()
+    {
+        OnPlayerTakeDamage?.Invoke();
+    }
+    
+    public event Action OnPlayerShot;
+
+    public void CallCameraShake()
+    {
+        OnPlayerShot?.Invoke();
+    }
         
 
     #endregion

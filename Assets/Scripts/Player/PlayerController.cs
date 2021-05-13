@@ -49,6 +49,10 @@ public class PlayerController : MonoBehaviour
             _shooter.IceShot();
             tempControl.ChangeTemp(-5);
         }
+        
+        if(Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
+            GameEvents.Current.CallCameraShake();
+            
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
@@ -97,6 +101,9 @@ public class PlayerController : MonoBehaviour
             yield return new WaitForSeconds(tempControl.damageEachXTime);
         }
     }
+    
+  
+    
 
     private void OnDestroy()
     {

@@ -9,33 +9,42 @@ using UnityEngine.UI;
 
 public class PlayerUIManager : MonoBehaviour
 {
-    private Slider _tempSlider;
-    [SerializeField] PlayerTempControl playerTempControl;
+    [SerializeField] Slider healthSlider;
+    [SerializeField] Slider tempSlider;
+    [SerializeField] PlayerController player;
 
     private void Awake()
     {
-        _tempSlider = GetComponentInChildren<Slider>();
-        if (playerTempControl == null)
+        tempSlider = GetComponentInChildren<Slider>();
+        if (player == null)
         {
-            playerTempControl = FindObjectOfType<PlayerTempControl>();
+            player = FindObjectOfType<PlayerController>();
         }
     }
 
     private void Start()
     {
 
-        GameEvents.Current.OnPlayerChangeTemp += UpdateSlider;
-        Invoke(nameof(UpdateSlider),0.01f);
+        GameEvents.Current.OnPlayerChangeTemp += UpdateTempSlider;
+        GameEvents.Current.OnPlayerTakeDamage += UpdateHealthSlider;
+        Invoke(nameof(UpdateTempSlider),0.01f);
+        Invoke(nameof(UpdateHealthSlider),0.01f);
     }
 
 
-    private void UpdateSlider()
+    private void UpdateTempSlider()
     {
-        _tempSlider.value = playerTempControl.TempInPrecentage();
+        tempSlider.value = player.tempControl.TempInPrecentage();
+    }
+    
+    private void UpdateHealthSlider()
+    {
+        healthSlider.value = player.healthComp.HealthInPrecentage();
     }
 
     private void OnDestroy()
     {
-        GameEvents.Current.OnPlayerChangeTemp -= UpdateSlider;
+        GameEvents.Current.OnPlayerChangeTemp -= UpdateTempSlider;
+        GameEvents.Current.OnPlayerTakeDamage -= UpdateHealthSlider;
     }
 }

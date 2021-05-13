@@ -200,7 +200,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   temperature: 0
   blinkDuration: 0.15
-  blinkIntensity: 10
+  blinkIntensity: 1000
   initTemp: 20
   maxTemp: 50
   minTemp: 20

@@ -20,7 +20,7 @@ public class CubeAttackPlayerState : MonsterState
     public void Update(BaseEnemy enemy)
     {
         Debug.Log(DistanceCheck(enemy));
-        _attackInterval += Time.deltaTime;
+        _attackInterval += Time.deltaTime; 
         if (_attackInterval > _attacker.delayBetweenAttacks && DistanceCheck(enemy))
         {
             _attacker.Attack();

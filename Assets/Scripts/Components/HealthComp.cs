@@ -23,8 +23,14 @@ public class HealthComp : MonoBehaviour
    public void TakeDamage(int damage)
    {
         _currentHealth -= damage;
-        
         _playerController.tempControl.ActivateBlink();
+        GameEvents.Current.CallPlayerUpdateHealth();
+   }
+   
+   public float HealthInPrecentage()
+   {
+       float currentPrecentage = (float)_currentHealth / maxHealth * 100f;
+       return  currentPrecentage;
    }
    
 }
