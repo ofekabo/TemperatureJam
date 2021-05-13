@@ -10,15 +10,21 @@ public class HealthComp : MonoBehaviour
    public int maxHealth = 100;
    private int _currentHealth;
    
+   private PlayerController _playerController;
+   
    public int CurrentHealth => _currentHealth;
 
    private void Start()
    {
        _currentHealth = initHealth;
+       _playerController = GetComponent<PlayerController>();
    }
 
    public void TakeDamage(int damage)
    {
-        _currentHealth -= damage;  
+        _currentHealth -= damage;
+        
+        _playerController.tempControl.ActivateBlink();
    }
+   
 }

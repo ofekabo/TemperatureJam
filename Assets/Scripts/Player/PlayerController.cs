@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     Movement _movement;
     Shooter _shooter;
     AnimatorController _animator;
-    [HideInInspector]public PlayerTempControl tempControl;
+    [HideInInspector] public PlayerTempControl tempControl;
     [HideInInspector] public HealthComp healthComp;
 
     bool _holdingShift;
@@ -33,8 +33,10 @@ public class PlayerController : MonoBehaviour
         _movement.PlayerMovement(_animator.animator);
         _shooter.UpdateRuntime();
         _animator.CalculateAngleForAnim(Input.mousePosition, _mainCam.WorldToScreenPoint(transform.position));
-
         _shooter.AimWeapons(_holdingShift);
+        
+        
+        #region Input
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -57,6 +59,8 @@ public class PlayerController : MonoBehaviour
         {
             _holdingShift = false;
         }
+        
+        #endregion
     }
 
     private void Hit()

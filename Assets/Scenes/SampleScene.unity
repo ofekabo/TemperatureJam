@@ -4993,7 +4993,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 1888e511d78e19e438f76d19aeabef45, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5098,6 +5098,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   temperature: 0
+  blinkDuration: 0.15
+  blinkIntensity: 10
   initTemp: 80
   maxTemp: 80
   minTemp: 0
@@ -7057,6 +7059,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: IceEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 9155162187042165329, guid: 6ac4fab4ff4189e46872dae60e8013ee, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1888e511d78e19e438f76d19aeabef45, type: 2}
     - target: {fileID: 9155162187042165330, guid: 6ac4fab4ff4189e46872dae60e8013ee, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -7403,10 +7409,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5609677542457414102, guid: 14e548bb036e9cd46b7acb1f1e64fc73, type: 3}
+      propertyPath: _blinkDuration
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5609677542457414102, guid: 14e548bb036e9cd46b7acb1f1e64fc73, type: 3}
+      propertyPath: blinkIntensity
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6247503925130032841, guid: 14e548bb036e9cd46b7acb1f1e64fc73, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6247503925130032844, guid: 14e548bb036e9cd46b7acb1f1e64fc73, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1888e511d78e19e438f76d19aeabef45, type: 2}
     - target: {fileID: 6247503925130032845, guid: 14e548bb036e9cd46b7acb1f1e64fc73, type: 3}
       propertyPath: m_RootOrder
       value: 2

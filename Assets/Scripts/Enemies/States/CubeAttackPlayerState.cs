@@ -19,10 +19,11 @@ public class CubeAttackPlayerState : MonsterState
 
     public void Update(BaseEnemy enemy)
     {
+        Debug.Log(DistanceCheck(enemy));
         _attackInterval += Time.deltaTime;
         if (_attackInterval > _attacker.delayBetweenAttacks && DistanceCheck(enemy))
         {
-            _attacker.StartCoroutine(nameof(_attacker.Attack));
+            _attacker.Attack();
             _attackInterval = 0;
         }
     }
@@ -34,12 +35,8 @@ public class CubeAttackPlayerState : MonsterState
 
     bool DistanceCheck(BaseEnemy enemy)
     {
-        float dist = (enemy.player.position - enemy.transform.position).sqrMagnitude;
+        var dist = Vector2.Distance(enemy.player.position,enemy.transform.position);
         
-        if (dist < _attacker.distanceToAttack * _attacker.distanceToAttack)
-        {
-            return true;
-        }
-        return false;
+        return dist < _attacker.distanceToAttack;
     }
 }

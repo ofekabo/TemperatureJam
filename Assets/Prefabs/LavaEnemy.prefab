@@ -171,7 +171,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 1888e511d78e19e438f76d19aeabef45, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -283,6 +283,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initState: 0
   player: {fileID: 0}
+  excludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
   deathTemp: 20
   tempDifference: 3
   basicHealth: 1
@@ -305,6 +308,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   temperature: 0
+  blinkDuration: 0.15
+  blinkIntensity: 10
   initTemp: 50
   maxTemp: 50
   minTemp: 20
@@ -336,7 +341,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 850
   target: {fileID: 0}
+  stoppingDistance: 0
   nextWaypointDistance: 0.5
+  drawGizmos: 0
 --- !u!114 &7030253649239887244
 MonoBehaviour:
   m_ObjectHideFlags: 0
