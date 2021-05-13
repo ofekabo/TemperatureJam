@@ -776,7 +776,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireRate: 0.1
-  bulletPushForce: 250
+  bulletPushForce: 150
   _weapons: []
 --- !u!114 &6247503925130032880
 MonoBehaviour:
