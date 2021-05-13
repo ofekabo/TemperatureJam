@@ -10,6 +10,7 @@ public class BaseEnemy : MonoBehaviour
     public MonsterStateID initState;
     public MonsterStateMachine StateMachine;
     public Transform player;
+    public LayerMask excludeLayers = new LayerMask();
 
     [Header("Temp Control")]
     [SerializeField] int deathTemp;

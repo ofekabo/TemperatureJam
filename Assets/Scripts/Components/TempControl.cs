@@ -42,4 +42,6 @@ public class TempControl : MonoBehaviour
         temperature = Mathf.Clamp(temperature, minTemp, maxTemp);
     }
     
+    
+    
 }

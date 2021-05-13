@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using MiscUtil.Extensions.TimeRelated;
 using UnityEngine;
 
 public class PlayerTempControl : TempControl
@@ -22,7 +23,7 @@ public class PlayerTempControl : TempControl
     
     public float TempInPrecentage()
     {
-        float currentPrecentage = (float)Temperature / maxTemp * 100;
+        float currentPrecentage = (float)Temperature / maxTemp * 100f;
         return  currentPrecentage;
     }
 

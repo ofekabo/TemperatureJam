@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShooterEnemy : BaseEnemy
 {
     private Shooter _shooter;
-    
+   
     public override void Awake()
     {
         base.Awake();
@@ -23,4 +23,6 @@ public class ShooterEnemy : BaseEnemy
         StateMachine = new MonsterStateMachine(this);
         StateMachine.RegisterState(new AIShooterState());
     }
+
+  
 }

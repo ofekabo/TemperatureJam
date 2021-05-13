@@ -60,6 +60,9 @@ public class Shooter : MonoBehaviour, IRuntime
         }
     }
 
+    
+    
+
 
     #region Aim
 
@@ -91,10 +94,6 @@ public class Shooter : MonoBehaviour, IRuntime
     public void AiAimWeapons(int index,Vector2 targetPos, Vector2 currentPos)
     {
         _weapons[index].transform.rotation = LookAtTarget(targetPos,currentPos);
-
-       
     }
-    
-
     #endregion
 }

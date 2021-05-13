@@ -5,10 +5,10 @@ using UnityEngine;
 public class AIShooterState : MonsterState
 {
     private Shooter _shooter;
-    
+
     public MonsterStateID GetID()
     {
-       return MonsterStateID.AttackPlayer;
+        return MonsterStateID.AttackPlayer;
     }
 
     public void Enter(BaseEnemy enemy)
@@ -19,13 +19,19 @@ public class AIShooterState : MonsterState
     public void Update(BaseEnemy enemy)
     {
         _shooter.UpdateRuntime();
-        
+
+
+        if (!RaycastCheck(enemy))
+        {
+            return;
+        }
+
         switch (enemy.enemyType)
         {
             case BaseEnemy.Type.Ice:
-                _shooter.IceShot(); 
+                _shooter.IceShot();
                 break;
-            
+
             case BaseEnemy.Type.Lava:
                 _shooter.LavaShot();
                 break;
@@ -34,6 +40,27 @@ public class AIShooterState : MonsterState
 
     public void Exit(BaseEnemy enemy)
     {
-        
+
+    }
+
+    bool RaycastCheck(BaseEnemy enemy)
+    {
+
+        Vector2 dir = (enemy.player.position - enemy.transform.position).normalized;
+        Ray2D ray = new Ray2D(enemy.transform.position, dir);
+
+        Debug.DrawRay(ray.origin, ray.direction * 8, Color.cyan);
+
+        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, 8, enemy.excludeLayers);
+
+        PlayerController p = hit.rigidbody.GetComponent<PlayerController>();
+
+        if (p)
+        {
+            return true;
+        }
+
+        return false;
     }
 }
+    

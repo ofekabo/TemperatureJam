@@ -18248,7 +18248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootingPoint: {fileID: 436519922648394678}
-  bulletProjectile: {fileID: 2318222188805896702, guid: 665a2b9a98945aa4f803bd32642436a0, type: 3}
+  bulletProjectile: {fileID: 5309825634347481929, guid: 665a2b9a98945aa4f803bd32642436a0, type: 3}
   bulletSpeed: 15
   bulletLifeTime: 1.5
   WeaponType: 0
@@ -18391,6 +18391,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireRate: 0.1
   bulletPushForce: 0
+  _weapons: []
 --- !u!212 &436519923746727922
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -18608,7 +18609,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootingPoint: {fileID: 436519924184349995}
-  bulletProjectile: {fileID: 2318222188805896702, guid: b4e398de069543146b936efb38a7e034, type: 3}
+  bulletProjectile: {fileID: 3978268285309480902, guid: b4e398de069543146b936efb38a7e034, type: 3}
   bulletSpeed: 15
   bulletLifeTime: 1.5
   WeaponType: 1

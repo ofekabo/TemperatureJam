@@ -9,7 +9,11 @@ using Debug = UnityEngine.Debug;
 public class AIMovement : Movement
 {
     [SerializeField] Transform target;
+    [SerializeField] float stoppingDistance = 0.0f;
     [SerializeField] float nextWaypointDistance = 3f;
+    
+    [Header("Debugging")]
+    [SerializeField] bool drawGizmos = false;
 
     Path _path;
     int _currentWaypoint = 0;
@@ -44,11 +48,16 @@ public class AIMovement : Movement
 
     public override void AiLocomotion()
     {
-        if (_path == null)
+        if (_path == null) { return; }
+        
+        float dist = (target.position - transform.position).sqrMagnitude;
+        
+        if (dist < stoppingDistance * stoppingDistance)
         {
-            return;
+            DontMove();
         }
-
+        else{ Move(); }
+        
         if (_currentWaypoint >= _path.vectorPath.Count) { return; }
         
 
@@ -62,7 +71,16 @@ public class AIMovement : Movement
             _currentWaypoint++;
     }
 
-    
+    private void OnDrawGizmos()
+    {
+        if (drawGizmos)
+        {
+            Gizmos.color = new Vector4(1,0,0,0.3f);
+            Gizmos.DrawCube(transform.position,Vector2.one * stoppingDistance);
+        }
+    }
+
+
     // controlled by Animations events
     public void Move()
     {
