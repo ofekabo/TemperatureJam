@@ -339,7 +339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6c0bd1692384bf429e98bf912711287, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 850
+  moveSpeed: 300
   target: {fileID: 0}
   stoppingDistance: 0
   nextWaypointDistance: 0.5
@@ -390,6 +390,7 @@ MonoBehaviour:
   tempDamage: 5
   healthDamage: 5
   returnBackDelay: 0.35
+  pushForce: 7
 --- !u!1001 &7030253649516009127
 PrefabInstance:
   m_ObjectHideFlags: 0

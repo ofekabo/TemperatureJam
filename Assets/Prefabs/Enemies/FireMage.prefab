@@ -248,7 +248,7 @@ MonoBehaviour:
   temperature: 0
   blinkDuration: 0.1
   blinkIntensity: 1000
-  initTemp: 80
+  initTemp: 40
   maxTemp: 80
   minTemp: 0
   tempUI: {fileID: 0}

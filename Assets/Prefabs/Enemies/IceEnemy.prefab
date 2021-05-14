@@ -230,7 +230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6c0bd1692384bf429e98bf912711287, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 700
+  moveSpeed: 300
   target: {fileID: 0}
   stoppingDistance: 0
   nextWaypointDistance: 0.5
@@ -281,6 +281,7 @@ MonoBehaviour:
   tempDamage: 5
   healthDamage: 5
   returnBackDelay: 0.35
+  pushForce: 7
 --- !u!1 &9155162187543840438
 GameObject:
   m_ObjectHideFlags: 0
