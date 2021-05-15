@@ -13,6 +13,6 @@ public class CameraMovement : MonoBehaviour
 
     private void MoveCameraToNextRoom(Transform nextCamPos)
     {
-        transform.position = new Vector3(nextCamPos.position.x,nextCamPos.position.y,-10);
+        LeanTween.move(gameObject,new Vector3 (nextCamPos.position.x,nextCamPos.position.y,-10),1f);
     }
 }
