@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,11 @@ public class ShooterEnemy : BaseEnemy
         _shooter = GetComponent<Shooter>();
     }
 
+    private void Start()
+    {
+        _shooter.OnFired += PlayShootAnim;
+    }
+
     public override void Update()
     {
         _shooter.AiAimWeapons(0,player.position,transform.position);
@@ -24,5 +30,8 @@ public class ShooterEnemy : BaseEnemy
         StateMachine.RegisterState(new AIShooterState());
     }
 
-  
+    private void PlayShootAnim()
+    {
+        animator.animator.SetTrigger("Fire");
+    }
 }

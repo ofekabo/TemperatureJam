@@ -42,12 +42,15 @@ public class Shooter : MonoBehaviour, IRuntime
         _icefireInterval += Time.deltaTime;
     }
 
+    public event Action OnFired;
+    
     public void LavaShot()
     {
         if (_lavafireInterval > fireRate)
         {
             _weapons[Lava].Shoot();
             _lavafireInterval = 0;
+            OnFired?.Invoke();
         }
     }
 
@@ -57,6 +60,7 @@ public class Shooter : MonoBehaviour, IRuntime
         {
             _weapons[Ice].Shoot();
             _icefireInterval = 0;
+            OnFired?.Invoke();
         }
     }
 
