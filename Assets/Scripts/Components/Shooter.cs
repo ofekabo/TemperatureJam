@@ -64,6 +64,15 @@ public class Shooter : MonoBehaviour, IRuntime
         }
     }
 
+    public void Shoot(int index)
+    {
+        if (_icefireInterval > fireRate)
+        {
+            _weapons[index].Shoot();
+            _icefireInterval = 0;
+        }
+    }
+
     
     
 

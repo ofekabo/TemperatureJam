@@ -29,7 +29,7 @@ public class AIShooterState : MonsterState
         switch (enemy.enemyType)
         {
             case BaseEnemy.Type.Ice:
-                _shooter.IceShot();
+                _shooter.Shoot(0);
                 break;
 
             case BaseEnemy.Type.Lava:
