@@ -10,6 +10,7 @@ public class Movement : MonoBehaviour
     protected Rigidbody2D rb;
     private PlayerController _player;
     private BaseEnemy _enemy;
+    [HideInInspector]public bool canDash;
 
     public void Awake()
     {
@@ -49,6 +50,19 @@ public class Movement : MonoBehaviour
         rb.MovePosition(rb.position + movement * (moveSpeed * Time.fixedDeltaTime));
         animator.SetFloat("Horizontal", h);
         animator.SetFloat("Vertical", v);
+
+        
+        PlayerDash(h,v);
+    }
+
+    public void PlayerDash(float h, float v)
+    {
+        if (canDash)
+        {
+            rb.velocity = new Vector2(rb.velocity.x *3,rb.velocity.y * 3);
+            canDash = false;
+        }
+        
     }
 
     public virtual void AiLocomotion()

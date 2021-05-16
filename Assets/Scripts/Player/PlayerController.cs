@@ -52,7 +52,12 @@ public class PlayerController : MonoBehaviour
         
         if(Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
             GameEvents.Current.CallCameraShake();
-            
+
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            _movement.canDash = true;
+        }
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
