@@ -22,6 +22,12 @@ public class GameEvents : MonoBehaviour
         OnDoorWayTriggerEnterCamera?.Invoke(nextCamPos,nextPlayerPos);
     }
 
+    public event Action OnRoomCleared;
+
+    public void CallEventCleared()
+    {
+        OnRoomCleared?.Invoke();
+    }
     #region PlayerEvents
     public event Action OnPlayerChangeTemp;
 

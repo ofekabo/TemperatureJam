@@ -7,6 +7,7 @@ public class RoomScript : MonoBehaviour
     List<Spawner> _spawners = new List<Spawner>();
     [SerializeField] GameObject[] doors;
     [SerializeField] private Sprite openDoorSprite;
+    [SerializeField] bool roomGiveKey = false;
 
 
     private void Start()
@@ -43,6 +44,13 @@ public class RoomScript : MonoBehaviour
                 d.GetComponent<SpriteRenderer>().sprite = openDoorSprite;
                 d.GetComponent<BoxCollider2D>().enabled = false;
             }
+
+            if (roomGiveKey)
+            {
+                GameEvents.Current.CallEventCleared();
+                roomGiveKey = false;
+            }
+                
         }
     }
 }
