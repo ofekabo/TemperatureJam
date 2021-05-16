@@ -7,16 +7,16 @@ using Vector3 = System.Numerics.Vector3;
 public class Movement : MonoBehaviour
 {
     [SerializeField] protected float moveSpeed = 5f;
-
+    [SerializeField] private GameObject trails;
     protected Rigidbody2D rb;
     private PlayerController _player;
     private BaseEnemy _enemy;
-    
+
     float h;
     float v;
     Vector2 movement;
-    [HideInInspector]public bool isDashing = false;
-    [HideInInspector]public bool playerCanGetDamage = true;
+    [HideInInspector] public bool isDashing = false;
+    [HideInInspector] public bool playerCanGetDamage = true;
 
     public void Awake()
     {
@@ -36,6 +36,8 @@ public class Movement : MonoBehaviour
 
     public virtual void Start()
     {
+        if (trails)
+            trails.SetActive(false);
     }
 
 
@@ -53,20 +55,21 @@ public class Movement : MonoBehaviour
         {
             animator.SetBool("IsMoving", false);
         }
-        
-        if(!isDashing)
+
+        if (!isDashing)
             rb.MovePosition(rb.position + movement * (moveSpeed * Time.fixedDeltaTime));
-        
+
         animator.SetFloat("Horizontal", h);
         animator.SetFloat("Vertical", v);
     }
 
-    public IEnumerator PlayerDash(float dashSpeed,float invulnerableTime)
+    public IEnumerator PlayerDash(float dashSpeed, float invulnerableTime)
     {
+        trails.SetActive(true);
         rb.velocity = Vector2.zero;
         playerCanGetDamage = false;
         yield return new WaitForSeconds(0.02f);
-        rb.AddForce(movement.normalized * dashSpeed,ForceMode2D.Impulse);
+        rb.AddForce(movement.normalized * dashSpeed, ForceMode2D.Impulse);
         StartCoroutine(ResetMovement(invulnerableTime));
     }
 
@@ -76,6 +79,7 @@ public class Movement : MonoBehaviour
         isDashing = false;
         yield return new WaitForSeconds(invulnerableTime - 0.10f);
         playerCanGetDamage = true;
+        trails.SetActive(false);
     }
 
     public virtual void AiLocomotion()

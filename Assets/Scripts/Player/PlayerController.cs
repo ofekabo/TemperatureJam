@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]float dashForce = 50;
     [SerializeField] float dashCooldown =1f;
     [SerializeField][Range(0.1f,0.8f)] float invulnerableTime =0.2f;
+    
     float dashInterval;
 
     bool _holdingShift;
