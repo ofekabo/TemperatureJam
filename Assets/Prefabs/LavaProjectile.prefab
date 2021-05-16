@@ -284,6 +284,7 @@ MonoBehaviour:
   lifeTime: 0
   hitEffect: {fileID: 3947436297928201848, guid: 8426bd5dd28b60e48981c0283c3dfea7, type: 3}
   force: 150
+  shotSFX: {fileID: 8300000, guid: 1d00b4850a70a5541a129a97192afd46, type: 3}
   bulletType: 1
   explosiveForce: 300
   diffExplosive: {fileID: 819891571125124919, guid: 06bcb4b7a88777b4b87aa0f92a7d5d29, type: 3}

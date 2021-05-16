@@ -11,17 +11,20 @@ public class PlayerController : MonoBehaviour
     AnimatorController _animator;
     [HideInInspector] public PlayerTempControl tempControl;
     [HideInInspector] public HealthComp healthComp;
-    
-    [Header("Dash")]
-    [SerializeField]float dashForce = 50;
-    [SerializeField] float dashCooldown =1f;
-    [SerializeField][Range(0.1f,0.8f)] float invulnerableTime =0.2f;
-    
+
+    [Header("Dash")] [SerializeField] float dashForce = 50;
+    [SerializeField] float dashCooldown = 1f;
+    [SerializeField] [Range(0.1f, 0.8f)] float invulnerableTime = 0.2f;
+
     float dashInterval;
 
     bool _holdingShift;
     Camera _mainCam;
     bool _isCoroutineRunning;
+
+    [Header("Hit Sound")]
+    [SerializeField] AudioClip hitSFX;
+    private AudioSource _as;
 
     void Start()
     {
@@ -30,8 +33,10 @@ public class PlayerController : MonoBehaviour
         _animator = GetComponent<AnimatorController>();
         tempControl = GetComponent<PlayerTempControl>();
         healthComp = GetComponent<HealthComp>();
+        _as = GetComponent<AudioSource>();
         _mainCam = Camera.main;
         tempControl.OnChangeTemp += Hit;
+        healthComp.OnPlayerTakeDamage += PlayHitSound;
     }
 
 
@@ -41,8 +46,8 @@ public class PlayerController : MonoBehaviour
         _shooter.UpdateRuntime();
         _animator.CalculateAngleForAnim(Input.mousePosition, _mainCam.WorldToScreenPoint(transform.position));
         _shooter.AimWeapons(_holdingShift);
-        
-        
+
+
         #region Input
 
         if (Input.GetMouseButtonDown(0))
@@ -56,8 +61,8 @@ public class PlayerController : MonoBehaviour
             _shooter.IceShot();
             tempControl.ChangeTemp(-5);
         }
-        
-        if(Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
+
+        if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
             GameEvents.Current.CallCameraShake();
 
         dashInterval += Time.deltaTime;
@@ -66,12 +71,11 @@ public class PlayerController : MonoBehaviour
             if (dashInterval > dashCooldown)
             {
                 _movement.isDashing = true;
-                StartCoroutine(_movement.PlayerDash(dashForce,invulnerableTime));
+                StartCoroutine(_movement.PlayerDash(dashForce, invulnerableTime));
                 dashInterval = 0;
             }
         }
-       
-       
+
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
@@ -82,28 +86,26 @@ public class PlayerController : MonoBehaviour
         {
             _holdingShift = false;
         }
-        
+
         #endregion
     }
 
     private void Hit()
     {
-        
         if (healthComp.CurrentHealth <= 0)
         {
             //die
         }
-        
+
         if (Mathf.Abs(tempControl.Temperature - tempControl.minTemp) <= tempControl.tempDifference
-        ||
-        Mathf.Abs(tempControl.Temperature - tempControl.maxTemp) <= tempControl.tempDifference)
+            ||
+            Mathf.Abs(tempControl.Temperature - tempControl.maxTemp) <= tempControl.tempDifference)
         {
             if (!_isCoroutineRunning)
             {
                 StartCoroutine(nameof(ReduceHealthEachXTime));
                 _isCoroutineRunning = true;
             }
-                
         }
         else
         {
@@ -120,9 +122,13 @@ public class PlayerController : MonoBehaviour
             yield return new WaitForSeconds(tempControl.damageEachXTime);
         }
     }
-    
-  
-    
+
+
+    void PlayHitSound()
+    {
+        _as.PlayOneShot(hitSFX);
+    }
+
 
     private void OnDestroy()
     {

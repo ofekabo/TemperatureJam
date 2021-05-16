@@ -284,6 +284,7 @@ MonoBehaviour:
   lifeTime: 0
   hitEffect: {fileID: 3947436297928201848, guid: 8426bd5dd28b60e48981c0283c3dfea7, type: 3}
   force: 0
+  shotSFX: {fileID: 8300000, guid: 590d6cc82cc0d6c498fa2f02442af799, type: 3}
   bulletType: 1
   healthDamage: 5
   tempDamage: 5

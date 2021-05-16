@@ -20,10 +20,13 @@ public class HealthComp : MonoBehaviour
        _playerController = GetComponent<PlayerController>();
    }
 
+   public event Action OnPlayerTakeDamage;
+   
    public void TakeDamage(int damage)
    {
        if (_playerController._movement.playerCanGetDamage)
        {
+           OnPlayerTakeDamage?.Invoke();
            _currentHealth -= damage;
            _playerController.tempControl.ActivateBlink();
            GameEvents.Current.CallPlayerUpdateHealth();

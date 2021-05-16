@@ -1,7 +1,6 @@
+using System;
 using Unity.Mathematics;
 using UnityEngine;
-using Vector3 = System.Numerics.Vector3;
-
 
 public class BaseProjectile : MonoBehaviour
 {
@@ -16,6 +15,9 @@ public class BaseProjectile : MonoBehaviour
 
     protected Vector2 projectileInitPos;
     private Rigidbody2D _rb;
+    
+   private AudioSource _as; 
+   public AudioClip shotSFX;
     
   
 
