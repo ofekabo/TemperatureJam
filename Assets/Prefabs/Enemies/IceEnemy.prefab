@@ -203,7 +203,7 @@ MonoBehaviour:
   blinkIntensity: 1000
   initTemp: 20
   maxTemp: 50
-  minTemp: 20
+  minTemp: 15
   tempUI: {fileID: 0}
 --- !u!114 &9155162187042165331
 MonoBehaviour:
@@ -231,6 +231,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 300
+  canDash: 0
   target: {fileID: 0}
   stoppingDistance: 0
   nextWaypointDistance: 0.5

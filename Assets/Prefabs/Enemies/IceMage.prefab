@@ -224,7 +224,7 @@ MonoBehaviour:
   excludeLayers:
     serializedVersion: 2
     m_Bits: 759
-  deathTemp: 75
+  deathTemp: 70
   tempDifference: 3
   basicHealth: 1
   tempControl: {fileID: 0}
@@ -250,7 +250,7 @@ MonoBehaviour:
   blinkIntensity: 1000
   initTemp: 40
   maxTemp: 80
-  minTemp: 0
+  minTemp: 10
   tempUI: {fileID: 0}
 --- !u!114 &4235008648728405062
 MonoBehaviour:
@@ -278,6 +278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 250
+  canDash: 0
   target: {fileID: 0}
   stoppingDistance: 4
   nextWaypointDistance: 3

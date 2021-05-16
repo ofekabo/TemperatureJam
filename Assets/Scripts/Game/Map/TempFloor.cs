@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
 
 public class TempFloor : MonoBehaviour
@@ -12,6 +13,7 @@ public class TempFloor : MonoBehaviour
     [SerializeField] int tempDamageToPlayer = 5;
     [SerializeField] bool damagePlayerHealth = false;
     [SerializeField] int healthDamageToPlayer = 5;
+    [SerializeField] private float overTimeEffect = 0.5f;
 
     public enum Type
     {
@@ -20,16 +22,17 @@ public class TempFloor : MonoBehaviour
     }
 
     public Type FloorType;
-    
+
     bool doDmg;
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         var tmp = other.GetComponent<TempControl>();
         var health = other.GetComponent<HealthComp>();
-        if (tmp || health);
+        if (tmp || health) ;
         {
             doDmg = true;
-            StartCoroutine(TempChange(tmp,health));
+            StartCoroutine(TempChange(tmp, health));
         }
     }
 
@@ -37,15 +40,15 @@ public class TempFloor : MonoBehaviour
     {
         var tmp = other.GetComponent<TempControl>();
         var health = other.GetComponent<HealthComp>();
-        if (tmp || health);
+        if (tmp || health) ;
         {
             doDmg = false;
-            StopCoroutine(TempChange(tmp,health));
+            StopCoroutine(TempChange(tmp, health));
         }
     }
 
 
-    IEnumerator TempChange(TempControl tmp,HealthComp health)
+    IEnumerator TempChange(TempControl tmp, HealthComp health)
     {
         while (doDmg)
         {
@@ -58,7 +61,7 @@ public class TempFloor : MonoBehaviour
 
                 case Type.Lava:
                     tmp.ChangeTemp(tempDamageToPlayer);
-                    tmp.ChangeTempAI(-tempDamageToAi);
+                    tmp.ChangeTempAI(tempDamageToAi);
                     break;
             }
 
@@ -66,10 +69,8 @@ public class TempFloor : MonoBehaviour
             {
                 health.TakeDamage(healthDamageToPlayer);
             }
-            
-            yield return new WaitForSeconds(1f);
+
+            yield return new WaitForSeconds(overTimeEffect);
         }
-       
-        
     }
 }
