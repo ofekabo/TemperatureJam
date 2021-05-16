@@ -44,5 +44,17 @@ public class GameEvents : MonoBehaviour
         
 
     #endregion
+
+    #region EnemiesEvents
+    
+    public event Action<Transform> OnEnemyDeath;
+    
+    public void CallEnemyDeath(Transform transform)
+    {
+        OnEnemyDeath?.Invoke(transform);
+    }
+    
+
+    #endregion
     
 }

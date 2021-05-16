@@ -108,19 +108,22 @@ public class BaseEnemy : MonoBehaviour
         {
             if (Mathf.Abs(tempControl.Temperature - deathTemp) <= tempDifference)
             {
-                Destroy(gameObject);
+                Destroy(gameObject,0.01f);
             }
 
             return;
         }
-
+        
+        
         if (enemyType == Type.Lava && tempControl.Temperature <= deathTemp)
         {
+            GameEvents.Current.CallEnemyDeath(transform);
             Destroy(gameObject);
         }
 
         if (enemyType == Type.Ice && tempControl.Temperature >= deathTemp)
         {
+            GameEvents.Current.CallEnemyDeath(transform);
             Destroy(gameObject);
         }
     }
@@ -150,4 +153,5 @@ public class BaseEnemy : MonoBehaviour
             }
         }
     }
+    
 }

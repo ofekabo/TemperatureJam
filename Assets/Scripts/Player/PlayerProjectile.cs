@@ -6,6 +6,11 @@ using UnityEngine;
 
 public class PlayerProjectile : BaseProjectile
 {
+    [Header("Explosion")]
+    [SerializeField] float explosiveForce = 500f;
+    [SerializeField] GameObject diffExplosive;
+    [SerializeField] GameObject sameExplosive;
+    [SerializeField] float explosionRadius = 5f;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -33,9 +38,9 @@ public class PlayerProjectile : BaseProjectile
 
             enemy.UpdateTemp();
         }
-
-
-            SpawnEffectNDestroy();
+        
+        CheckCollision(other,diffExplosive,sameExplosive,explosionRadius,explosiveForce);
+        
         
     }
 }

@@ -37,8 +37,8 @@ public class EnemiesProjectile : BaseProjectile
 
             pHealth.TakeDamage(healthDamage);
         }
-        
-        SpawnEffectNDestroy();
+
+        SpawnEffectNDestroy(other);
     }
 }
 

@@ -49,11 +49,11 @@ public class AIShooterState : MonsterState
         Vector2 dir = (enemy.player.position - enemy.transform.position).normalized;
         Ray2D ray = new Ray2D(enemy.transform.position, dir);
 
-        Debug.DrawRay(ray.origin, ray.direction * 8, Color.cyan);
+        Debug.DrawRay(ray.origin, ray.direction * 14, Color.cyan);
 
-        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, 8, enemy.excludeLayers);
+        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, 14, enemy.excludeLayers);
 
-        PlayerController p = hit.rigidbody.GetComponent<PlayerController>();
+        PlayerController p = hit.collider.GetComponent<PlayerController>();
 
         if (p)
         {

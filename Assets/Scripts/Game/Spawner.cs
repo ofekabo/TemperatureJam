@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
@@ -34,6 +35,7 @@ public class Spawner : MonoBehaviour
         spawnerSprite = GetComponent<SpriteRenderer>();
         Invoke(nameof(DelayedGridPos),0.1f);
         GameEvents.Current.OnDoorwayTriggerEnterSpawner += StartCor;
+        GameEvents.Current.OnEnemyDeath += CheckList;
         _spawned = false;
     }
 
@@ -57,6 +59,21 @@ public class Spawner : MonoBehaviour
                 Vector2 newSlot = new Vector2(xIndex,yIndex);
                 gridPositions.Add(newSlot);
             }
+        }
+    }
+
+    
+    public event Action<int,Spawner> OnEnemiesListEmpty;
+    void CheckList(Transform t)
+    {
+        if (enemiesList.Count == 1)
+        {
+            enemiesList.Remove(t);
+            OnEnemiesListEmpty?.Invoke(id,this);
+        }
+        else
+        {
+            enemiesList.Remove(t);
         }
     }
 

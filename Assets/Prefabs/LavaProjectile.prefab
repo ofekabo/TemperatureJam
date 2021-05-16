@@ -283,5 +283,9 @@ MonoBehaviour:
   speed: 0
   lifeTime: 0
   hitEffect: {fileID: 3947436297928201848, guid: 8426bd5dd28b60e48981c0283c3dfea7, type: 3}
-  force: 250
+  force: 150
   bulletType: 1
+  explosiveForce: 500
+  diffExplosive: {fileID: 8625633203838777921, guid: c89124846b015674bb1f6fc0a98da60a, type: 3}
+  sameExplosive: {fileID: 8625633203838777921, guid: c89124846b015674bb1f6fc0a98da60a, type: 3}
+  explosionRadius: 5
