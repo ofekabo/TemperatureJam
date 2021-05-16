@@ -10,6 +10,7 @@ public class RoomScript : MonoBehaviour
     [SerializeField] int id;
     List<Spawner> _spawners = new List<Spawner>();
     [SerializeField] GameObject[] doors;
+    [SerializeField] private Sprite openDoorSprite;
 
 
     private void Start()
@@ -43,7 +44,8 @@ public class RoomScript : MonoBehaviour
 
             foreach (var d in doors)
             {
-                d.SetActive(false);
+                d.GetComponent<SpriteRenderer>().sprite = openDoorSprite;
+                d.GetComponent<BoxCollider2D>().enabled = false;
             }
         }
     }
