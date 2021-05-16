@@ -6,17 +6,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [HideInInspector] public Movement _movement;
+    Movement _movement;
     Shooter _shooter;
     AnimatorController _animator;
     [HideInInspector] public PlayerTempControl tempControl;
     [HideInInspector] public HealthComp healthComp;
-    
-    [Header("Dash")]
-    [SerializeField]float dashForce = 50;
-    [SerializeField] float dashCooldown =1f;
-    [SerializeField][Range(0.1f,0.8f)] float invulnerableTime =0.2f;
-    float dashInterval;
 
     bool _holdingShift;
     Camera _mainCam;
@@ -59,18 +53,11 @@ public class PlayerController : MonoBehaviour
         if(Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
             GameEvents.Current.CallCameraShake();
 
-        dashInterval += Time.deltaTime;
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (dashInterval > dashCooldown)
-            {
-                _movement.isDashing = true;
-                StartCoroutine(_movement.PlayerDash(dashForce,invulnerableTime));
-                dashInterval = 0;
-            }
+            _movement.canDash = true;
         }
-       
-       
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {

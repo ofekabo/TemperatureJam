@@ -87,7 +87,7 @@ public class Spawner : MonoBehaviour
     
     IEnumerator SpawnEnemies()
     {
-        _spawned = true;
+      
         foreach (var enemy in enemies)
         {
             for (int i = 0; i < enemy.spawnAmount; i++)
@@ -102,6 +102,7 @@ public class Spawner : MonoBehaviour
                 }
             }
         }
+        _spawned = true;
     }
 
     Vector3 GetRandomPos()

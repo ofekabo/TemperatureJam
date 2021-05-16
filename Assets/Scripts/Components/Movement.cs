@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Vector3 = System.Numerics.Vector3;
 
 public class Movement : MonoBehaviour
 {
@@ -11,16 +10,10 @@ public class Movement : MonoBehaviour
     protected Rigidbody2D rb;
     private PlayerController _player;
     private BaseEnemy _enemy;
-    
-    float h;
-    float v;
-    Vector2 movement;
-    [HideInInspector]public bool isDashing = false;
-    [HideInInspector]public bool playerCanGetDamage = true;
+    [HideInInspector]public bool canDash;
 
     public void Awake()
     {
-        isDashing = false;
         try
         {
             _player = GetComponent<PlayerController>();
@@ -41,10 +34,10 @@ public class Movement : MonoBehaviour
 
     public void PlayerMovement(Animator animator)
     {
-        h = Input.GetAxis("Horizontal");
-        v = Input.GetAxis("Vertical");
+        float h = Input.GetAxis("Horizontal");
+        float v = Input.GetAxis("Vertical");
 
-        movement = new Vector2(h, v);
+        Vector2 movement = new Vector2(h, v);
         if (Mathf.Abs(movement.magnitude) > 0)
         {
             animator.SetBool("IsMoving", true);
@@ -53,29 +46,23 @@ public class Movement : MonoBehaviour
         {
             animator.SetBool("IsMoving", false);
         }
-        
-        if(!isDashing)
-            rb.MovePosition(rb.position + movement * (moveSpeed * Time.fixedDeltaTime));
-        
+
+        rb.MovePosition(rb.position + movement * (moveSpeed * Time.fixedDeltaTime));
         animator.SetFloat("Horizontal", h);
         animator.SetFloat("Vertical", v);
+
+        
+        PlayerDash(h,v);
     }
 
-    public IEnumerator PlayerDash(float dashSpeed,float invulnerableTime)
+    public void PlayerDash(float h, float v)
     {
-        rb.velocity = Vector2.zero;
-        playerCanGetDamage = false;
-        yield return new WaitForSeconds(0.02f);
-        rb.AddForce(movement.normalized * dashSpeed,ForceMode2D.Impulse);
-        StartCoroutine(ResetMovement(invulnerableTime));
-    }
-
-    IEnumerator ResetMovement(float invulnerableTime)
-    {
-        yield return new WaitForSeconds(0.10f);
-        isDashing = false;
-        yield return new WaitForSeconds(invulnerableTime - 0.10f);
-        playerCanGetDamage = true;
+        if (canDash)
+        {
+            rb.velocity = new Vector2(rb.velocity.x *3,rb.velocity.y * 3);
+            canDash = false;
+        }
+        
     }
 
     public virtual void AiLocomotion()

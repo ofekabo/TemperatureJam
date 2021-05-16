@@ -282,6 +282,6 @@ MonoBehaviour:
   force: 150
   bulletType: 0
   explosiveForce: 300
-  diffExplosive: {fileID: 819891571125124919, guid: 06bcb4b7a88777b4b87aa0f92a7d5d29, type: 3}
+  diffExplosive: {fileID: 8625633203838777921, guid: c89124846b015674bb1f6fc0a98da60a, type: 3}
   sameExplosive: {fileID: 8625633203838777921, guid: c89124846b015674bb1f6fc0a98da60a, type: 3}
   explosionRadius: 5
