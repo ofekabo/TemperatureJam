@@ -1,9 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using Cache = UnityEngine.Cache;
 
 public class DoorwayTrigger : MonoBehaviour
 {
@@ -14,6 +10,7 @@ public class DoorwayTrigger : MonoBehaviour
 
     [SerializeField] private float cameraSize = 8f;
     [SerializeField] Transform nextCameraPos;
+    [SerializeField] Transform nextPlayerPos;
     private Camera mainCamera;
     
 
@@ -27,7 +24,7 @@ public class DoorwayTrigger : MonoBehaviour
         PlayerController p = other.GetComponent<PlayerController>();
         if (p)
         {
-            GameEvents.Current.DoorwayTriggerEnter(id, nextCameraPos);
+            GameEvents.Current.DoorwayTriggerEnter(id, nextCameraPos,nextPlayerPos);
             if (Math.Abs(cameraSize - mainCamera.orthographicSize) > 0.01f)
             {
                 LeanTween.value(mainCamera.orthographicSize, cameraSize, 1f).setOnUpdate(value =>

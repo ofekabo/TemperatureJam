@@ -13,12 +13,13 @@ public class GameEvents : MonoBehaviour
     }
     
     public event Action<int> OnDoorwayTriggerEnterSpawner;
-    public event Action<Transform> OnDoorWayTriggerEnterCamera;
+    public event Action<Transform,Transform> OnDoorWayTriggerEnterCamera;
+    
 
-    public void DoorwayTriggerEnter(int id,Transform nextCamPos)
+    public void DoorwayTriggerEnter(int id,Transform nextCamPos,Transform nextPlayerPos)
     {
         OnDoorwayTriggerEnterSpawner?.Invoke(id);
-        OnDoorWayTriggerEnterCamera?.Invoke(nextCamPos);
+        OnDoorWayTriggerEnterCamera?.Invoke(nextCamPos,nextPlayerPos);
     }
 
     #region PlayerEvents

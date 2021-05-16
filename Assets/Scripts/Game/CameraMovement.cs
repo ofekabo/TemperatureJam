@@ -14,9 +14,11 @@ public class CameraMovement : MonoBehaviour
     [SerializeField][Range(0.3f,1f)] float cameraCooldown = 0.8f;
     [SerializeField][Range(0.1f,1f)] float tweenTime = 0.2f;
     private float _cooldownInterval;
+    private Transform _player;
     private void Start()
     {
         GameEvents.Current.OnDoorWayTriggerEnterCamera += MoveCameraToNextRoom;
+        _player = FindObjectOfType<PlayerController>().transform;
     }
 
     private void Update()
@@ -24,11 +26,12 @@ public class CameraMovement : MonoBehaviour
         _cooldownInterval += Time.deltaTime;
     }
 
-    void  MoveCameraToNextRoom(Transform nextCamPos)
+    void  MoveCameraToNextRoom(Transform nextCamPos,Transform nextPlayerPos)
     {
         if (transform.position != new Vector3(nextCamPos.position.x,nextCamPos.position.y, -10) && _cooldownInterval > cameraCooldown)
         {
             LeanTween.move(gameObject,new Vector3 (nextCamPos.position.x,nextCamPos.position.y,-10),tweenTime);
+            _player.position = nextPlayerPos.position;
             _cooldownInterval = 0;
         }
            
