@@ -22,9 +22,13 @@ public class HealthComp : MonoBehaviour
 
    public void TakeDamage(int damage)
    {
-        _currentHealth -= damage;
-        _playerController.tempControl.ActivateBlink();
-        GameEvents.Current.CallPlayerUpdateHealth();
+       if (_playerController._movement.playerCanGetDamage)
+       {
+           _currentHealth -= damage;
+           _playerController.tempControl.ActivateBlink();
+           GameEvents.Current.CallPlayerUpdateHealth();
+       }
+       
    }
    
    public float HealthInPrecentage()
