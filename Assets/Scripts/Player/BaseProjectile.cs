@@ -103,7 +103,7 @@ public class BaseProjectile : MonoBehaviour
                  SpawnExplosive(sameExplosive,radius,force);
              }
          }
-         
+         GameEvents.Current.CallExplosionSound();
          Destroy(gameObject, 0.01f);
     }
 

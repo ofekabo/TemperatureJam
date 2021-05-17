@@ -31,7 +31,12 @@ public class HealthComp : MonoBehaviour
            _playerController.tempControl.ActivateBlink();
            GameEvents.Current.CallPlayerUpdateHealth();
        }
-       
+   }
+
+   public void AddHealth(int healthToAdd)
+   {
+       _currentHealth = Mathf.Min(_currentHealth + healthToAdd,maxHealth);
+       GameEvents.Current.CallPlayerUpdateHealth();
    }
    
    public float HealthInPrecentage()

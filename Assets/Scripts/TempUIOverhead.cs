@@ -23,6 +23,6 @@ public class TempUIOverhead : MonoBehaviour
 
     public void UpdateText()
     {
-        tempText.text = $"{_baseEnemy.tempControl.Temperature}/{_baseEnemy.DeathTemp}";
+        tempText.text = $"{_baseEnemy.tempControl.Temperature} | {_baseEnemy.DeathTemp}";
     }
 }

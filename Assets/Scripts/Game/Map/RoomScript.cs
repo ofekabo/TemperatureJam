@@ -8,6 +8,7 @@ public class RoomScript : MonoBehaviour
     [SerializeField] GameObject[] doors;
     [SerializeField] private Sprite openDoorSprite;
     [SerializeField] bool roomGiveKey = false;
+    [SerializeField] int doorIndex;
 
 
     private void Start()
@@ -39,11 +40,14 @@ public class RoomScript : MonoBehaviour
                 return;
             }
 
+            if(openDoorSprite != null)
+                doors[doorIndex].GetComponent<SpriteRenderer>().sprite = openDoorSprite;
             foreach (var d in doors)
             {
-                d.GetComponent<SpriteRenderer>().sprite = openDoorSprite;
                 d.GetComponent<BoxCollider2D>().enabled = false;
             }
+          
+
 
             if (roomGiveKey)
             {

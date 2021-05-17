@@ -121,4 +121,10 @@ public class Spawner : MonoBehaviour
         }
         return Vector3.zero;
     }
+
+    private void OnDestroy()
+    {
+        GameEvents.Current.OnDoorwayTriggerEnterSpawner -= StartCor;
+        GameEvents.Current.OnEnemyDeath -= CheckList;
+    }
 }

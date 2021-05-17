@@ -31,7 +31,7 @@ public class CameraMovement : MonoBehaviour
         if (transform.position != new Vector3(nextCamPos.position.x,nextCamPos.position.y, -10) && _cooldownInterval > cameraCooldown)
         {
             LeanTween.move(gameObject,new Vector3 (nextCamPos.position.x,nextCamPos.position.y,-10),tweenTime);
-            _player.position = nextPlayerPos.position;
+            _player.position = new Vector3(nextPlayerPos.position.x,nextPlayerPos.position.y,0);
             _cooldownInterval = 0;
         }
            

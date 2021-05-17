@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
@@ -29,6 +30,7 @@ public class PlayerUIManager : MonoBehaviour
         GameEvents.Current.OnPlayerTakeDamage += UpdateHealthSlider;
         Invoke(nameof(UpdateTempSlider),0.01f);
         Invoke(nameof(UpdateHealthSlider),0.01f);
+        GameEvents.Current.OnPlayerDeath += RestartGame;
     }
 
 
@@ -41,10 +43,16 @@ public class PlayerUIManager : MonoBehaviour
     {
         healthSlider.value = player.healthComp.HealthInPrecentage();
     }
-
+    void RestartGame()
+    {
+        SceneManager.LoadScene("Menu");
+    }
     private void OnDestroy()
     {
         GameEvents.Current.OnPlayerChangeTemp -= UpdateTempSlider;
         GameEvents.Current.OnPlayerTakeDamage -= UpdateHealthSlider;
+        GameEvents.Current.OnPlayerDeath -= RestartGame;
     }
+
+ 
 }

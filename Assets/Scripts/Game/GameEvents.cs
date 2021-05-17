@@ -28,6 +28,31 @@ public class GameEvents : MonoBehaviour
     {
         OnRoomCleared?.Invoke();
     }
+
+    #region Audio
+
+    public event Action OnExplosion;
+
+    public void CallExplosionSound()
+    {
+        OnExplosion?.Invoke();
+    }
+    
+    public event Action OnHealthPickup;
+
+    public void CallOnHealthPickup()
+    {
+        OnHealthPickup?.Invoke();
+    }
+    
+    public event Action OnPlayerDeath;
+
+    public void CallPlayerDied()
+    {
+        OnPlayerDeath?.Invoke();
+    }
+
+    #endregion
     #region PlayerEvents
     public event Action OnPlayerChangeTemp;
 

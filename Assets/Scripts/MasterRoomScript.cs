@@ -7,6 +7,8 @@ using UnityEngine;
 public class MasterRoomScript : MonoBehaviour
 {
     [SerializeField]int maxKeys;
+    [SerializeField] GameObject[] doors;
+    [SerializeField] Sprite openDoorSprite;
     private int _currentKeys;
 
     private void Start()
@@ -19,7 +21,12 @@ public class MasterRoomScript : MonoBehaviour
         _currentKeys++;
         if (_currentKeys >= maxKeys)
         {
-            Debug.Log("room opened"+_currentKeys);
+            foreach (var door in doors)
+            {
+                door.GetComponent<Collider2D>().enabled = false;
+                door.GetComponent<SpriteRenderer>().sprite = openDoorSprite;
+            }
+           
         }
     }
 }

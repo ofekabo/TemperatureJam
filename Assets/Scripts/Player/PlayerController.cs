@@ -94,7 +94,7 @@ public class PlayerController : MonoBehaviour
     {
         if (healthComp.CurrentHealth <= 0)
         {
-            //die
+            GameEvents.Current.CallPlayerDied();
         }
 
         if (Mathf.Abs(tempControl.Temperature - tempControl.minTemp) <= tempControl.tempDifference
@@ -133,5 +133,6 @@ public class PlayerController : MonoBehaviour
     private void OnDestroy()
     {
         tempControl.OnChangeTemp -= Hit;
+        healthComp.OnPlayerTakeDamage -= PlayHitSound;
     }
 }
